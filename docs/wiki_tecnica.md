@@ -66,3 +66,37 @@ Buenas prácticas:
 - Confirmar rutas/páginas públicas finales (Home, Bio, Feldenkrais, Talleres, Contacto).
 - Dejar el formulario de contacto robusto (validación + anti-spam básico).
 - Mejorar estilo (CSS simple + responsive) antes de meter extras.
+
+## Configuración real de deploy (validada)
+
+- Procfile:
+  web: gunicorn app:app --bind 0.0.0.0:8080 --workers 1 --threads 8 --timeout 0
+
+- fly.toml:
+  internal_port = 8080
+
+- app.py:
+  if __name__ == "__main__":
+      app.run(host="0.0.0.0", port=8080, debug=True)
+
+Notas:
+- El puerto debe coincidir en Fly y Gunicorn.
+- Evitar duplicaciones en app.run().
+- 502 suele indicar desalineación de puertos.
+
+
+## Configuración real de deploy (validada)
+
+- Procfile:
+  web: gunicorn app:app --bind 0.0.0.0:8080 --workers 1 --threads 8 --timeout 0
+
+- fly.toml:
+  internal_port = 8080
+
+- app.py:
+  if __name__ == "__main__":
+      app.run(host="0.0.0.0", port=8080, debug=True)
+
+Notas:
+- El puerto debe coincidir en Fly y Gunicorn.
+- 502 suele indicar desalineación de puertos.

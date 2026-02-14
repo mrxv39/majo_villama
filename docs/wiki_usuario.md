@@ -22,6 +22,7 @@ Normalmente editarás:
 - Luego se pueden revisar los mensajes desde una página interna (si se implementa) o accediendo a la DB.
 
 ## Publicación
+La web está desplegada en Fly.io y lista para actualizarse mediante nuevos commits.
 Cuando la web se despliega, estará accesible por URL.
 Para cambios:
 - se hace un commit en Git

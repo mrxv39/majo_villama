@@ -18,3 +18,34 @@ AHORA:
 
 IMPACTO:
 - Cualquier persona puede arrancar local, desplegar y mantener sin depender de “memoria oral”.
+
+## 2026-02-14 — fix: deploy estable en Fly.io (puerto 8080)
+
+ANTES:
+- Error 502 tras deploy.
+- Gunicorn no estaba correctamente vinculado al puerto 8080.
+- Duplicación/confusión en app.run().
+
+AHORA:
+- Procfile limpio: gunicorn bind 0.0.0.0:8080
+- app.py sin duplicaciones.
+- Deploy coherente con internal_port=8080.
+
+IMPACTO:
+- App lista para deploy estable en Fly.io sin 502.
+
+
+## 2026-02-14 — fix: deploy estable en Fly.io (puerto 8080)
+
+ANTES:
+- Error 502 tras deploy.
+- Gunicorn no estaba correctamente vinculado al puerto 8080.
+- Duplicación/confusión en app.run().
+
+AHORA:
+- Procfile limpio: gunicorn bind 0.0.0.0:8080
+- app.py sin duplicaciones.
+- Deploy coherente con internal_port=8080.
+
+IMPACTO:
+- App lista para deploy estable en Fly.io sin 502.

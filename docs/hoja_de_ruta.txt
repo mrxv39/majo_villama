@@ -19,7 +19,8 @@ FASE 2 — Contacto + persistencia (0.5–1 día)
 - Página simple de confirmación (“mensaje enviado”)
 Entregable: mensajes guardados y verificables.
 
-FASE 3 — Deploy (0.5 día)
+FASE 3 — Deploy (0.5 día) (HECHO)
+- Fix 502: Procfile + app.run + puerto 8080 alineado
 - Config Fly.io (secrets, deploy)
 - Verificación en móvil
 Entregable: URL pública estable.
@@ -35,3 +36,4 @@ BACKLOG (para después)
 - Envío de email automático al recibir contacto
 - Multiidioma (ES/CAT/EN)
 - Panel privado para ver mensajes
+
