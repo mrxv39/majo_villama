@@ -1,0 +1,34 @@
+# Hoja de ruta – majo_villama
+
+## Implementado
+- init: estructura del proyecto (15m)
+
+## Por implementar – CRÍTICAS
+- Definir objetivos del negocio + métricas (alumnos ahora / 6 meses / 1 año) (90m)
+- Definir oferta y límites de agenda (horas/semana, alumnos por clase, objetivo ingresos) (90m)
+    [DEP: Definir objetivos del negocio + métricas (alumnos ahora / 6 meses / 1 año)] Definir pricing y extremos (ej: 2h/semana -> 10.000) (60m)
+- Mensaje base para web: “vender el sueño antes de empezar” (90m)
+    [DEP: Mensaje base para web: “vender el sueño antes de empezar”] Lista de palabras/frases para explicar Feldenkrais a novatos (60m)
+    [DEP: Mensaje base para web: “vender el sueño antes de empezar”] Redactar copy mínimo (home + sobre mí + clases + contacto) (90m)
+- Web básica (corto plazo) (4h)
+    [DEP: Mensaje base para web: “vender el sueño antes de empezar”] Estructura de secciones y navegación (60m)
+    [DEP: Web básica (corto plazo) (4h)] Página de contacto simple + CTA claro (60m)
+    [DEP: Web básica (corto plazo) (4h)] Integrar enlaces redes (YouTube/Instagram/CCCB/La Poderosa/Atotaixodansa) (30m)
+- Proceso de alta de alumno: “charla obligatoria 10 min” (90m)
+    [DEP: Proceso de alta de alumno: “charla obligatoria 10 min”] Guion y checklist (feeling + perfil + posibles contactos) (60m)
+- Formularios alumno (onboarding + seguimiento) (3h)
+    [DEP: Formularios alumno (onboarding + seguimiento) (3h)] Formulario inicial (una vez) (90m)
+    [DEP: Formularios alumno (onboarding + seguimiento) (3h)] Formulario seguimiento (cada X tiempo, automatizable) (90m)
+- Mejorar “mail post-sesión” (feedback accionable) (2h)
+    [DEP: Formularios alumno (onboarding + seguimiento) (3h)] Plantilla mail al alumno (focus: 1 mejora concreta para próxima clase) (60m)
+    [DEP: Mejorar “mail post-sesión” (feedback accionable) (2h)] Cambiar “preguntar al final” por mini-cuestionario (evitar vergüenza + ahorrar tiempo + base de datos) (60m)
+
+## Por implementar – NO CRÍTICAS
+- Diseñar setup material de clase (incluye tecnología) (2h)
+- Sistema “trae a un amigo” (texto + dinámica) (30m)
+- Plan de contenidos: grabar clases para analizar/mejorar + reutilizar (YouTube/Spotify) (4h)
+- Equipo de grabación (lista mínima + presupuesto) (90m)
+- Web IA / chat IA con conocimiento propio (medio plazo) (6h)
+- Infra Fly.io (alta/baja, despliegue barato, pago por uso) (2h)
+- Investigación de disponibilidad horaria y por qué (documentar días/criterios) (60m)
+- Analítica: porcentaje hombres/mujeres + tamaño ideal clase online (60m)
