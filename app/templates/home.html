@@ -1,0 +1,28 @@
+<!-- app/templates/home.html -->
+{% extends "base.html" %}
+{% block title %}Inicio — Majo Villama{% endblock %}
+{% block content %}
+<section class="hero">
+  <h1>Movimiento, atención y presencia.</h1>
+  <p>Clases y acompañamiento desde Feldenkrais y la exploración somática. Menos esfuerzo. Más claridad.</p>
+  <div class="hero-actions">
+    <a class="btn" href="{{ url_for('contacto') }}">Quiero una primera charla (10 min)</a>
+    <a class="btn ghost" href="{{ url_for('clases') }}">Ver clases</a>
+  </div>
+</section>
+
+<section class="cards">
+  <div class="card">
+    <h3>Para empezar</h3>
+    <p>Una conversación breve para ver si esto encaja contigo y qué objetivo buscas.</p>
+  </div>
+  <div class="card">
+    <h3>Para profundizar</h3>
+    <p>Sesiones y práctica para construir un cambio real, paso a paso.</p>
+  </div>
+  <div class="card">
+    <h3>Para sostener</h3>
+    <p>Seguimiento simple: un gesto, una idea y una propuesta concreta para tu próxima semana.</p>
+  </div>
+</section>
+{% endblock %}

@@ -1,0 +1,14 @@
+<!-- app/templates/clases.html -->
+{% extends "base.html" %}
+{% block title %}Clases — Majo Villama{% endblock %}
+{% block content %}
+<h1>Clases</h1>
+
+<ul class="list">
+  <li><strong>Sesiones 1:1</strong> — para trabajar un objetivo concreto (dolor, movilidad, presencia, eficiencia).</li>
+  <li><strong>Clases en grupo</strong> — práctica guiada para explorar patrones y alternativas.</li>
+  <li><strong>Proceso</strong> — una primera charla breve (10 min) para alinear expectativas y enfoque.</li>
+</ul>
+
+<a class="btn" href="{{ url_for('contacto') }}">Reservar charla (10 min)</a>
+{% endblock %}

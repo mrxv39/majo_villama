@@ -1,0 +1,12 @@
+<!-- app/templates/sobre.html -->
+{% extends "base.html" %}
+{% block title %}Sobre — Majo Villama{% endblock %}
+{% block content %}
+<h1>Sobre Majo</h1>
+<p>Ballarina, intérpret i pedagoga amb sòlida base en Improvisació, Partnering, Body Weather i Feldenkrais.</p>
+
+<p>Me interesa el cuerpo como lenguaje: lo que haces, lo que percibes y lo que puedes elegir cuando aparecen nuevas opciones.</p>
+
+<p class="note">Si quieres, lo aterrizamos en una charla breve (10 min) antes de empezar.</p>
+<a class="btn" href="{{ url_for('contacto') }}">Contactar</a>
+{% endblock %}
