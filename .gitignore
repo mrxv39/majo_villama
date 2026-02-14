@@ -1,4 +1,3 @@
-
 # Entornos virtuales
 .venv/
 venv/
@@ -10,10 +9,11 @@ __pycache__/
 # Variables de entorno
 .env
 
-# Backups generados por scaffold
-_backup_scaffold_*/
+# Backups / temporales
+_backup_*/
 *.bak_*
+*.zip
 
-# Archivos del sistema
+# Sistema
 .DS_Store
 Thumbs.db
