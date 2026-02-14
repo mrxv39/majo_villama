@@ -5,3 +5,5 @@ __pycache__/
 _backup_scaffold_*/
 
 *.bak_*
+
+.venv/
