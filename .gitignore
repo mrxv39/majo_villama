@@ -17,3 +17,7 @@ _backup_*/
 # Sistema
 .DS_Store
 Thumbs.db
+
+# legacy images folder (do not use)
+img/
+

@@ -1,0 +1,46 @@
+<!-- C:\Users\Usuario\Desktop\projectos\majo_villama\templates\contact.html -->
+{% extends "base.html" %}
+{% block title %}Contacto · Majo Villafaina{% endblock %}
+{% block content %}
+
+<section class="section">
+  <div class="section__header">
+    <h1>Contacto</h1>
+    <p class="muted">Déjame un mensaje y te respondo.</p>
+  </div>
+
+  {% if sent %}
+    <div class="notice">
+      <strong>Recibido.</strong> Gracias, {{ data.nombre or "!" }}. Te responderé en cuanto pueda.
+    </div>
+  {% endif %}
+
+  <form class="form" method="post" action="{{ url_for('contact') }}">
+    <label class="field">
+      <span>Nombre</span>
+      <input name="nombre" type="text" placeholder="Tu nombre" value="{{ data.nombre }}" required>
+    </label>
+
+    <label class="field">
+      <span>Email</span>
+      <input name="email" type="email" placeholder="tu@email.com" value="{{ data.email }}" required>
+    </label>
+
+    <label class="field">
+      <span>Mensaje</span>
+      <textarea name="mensaje" rows="6" placeholder="Cuéntame qué necesitas" required>{{ data.mensaje }}</textarea>
+    </label>
+
+    <button class="btn btn--primary" type="submit">Enviar</button>
+  </form>
+
+  <div class="card subtle">
+    <h3>Nota</h3>
+    <p class="muted">
+      En v1.0 esto no envía email todavía: solo confirma en pantalla.
+      Si quieres, en el siguiente paso lo conectamos a email (SendGrid/Mailgun) o a una tabla SQLite.
+    </p>
+  </div>
+</section>
+
+{% endblock %}

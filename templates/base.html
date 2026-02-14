@@ -1,0 +1,37 @@
+<!-- C:\Users\Usuario\Desktop\projectos\majo_villama\templates\base.html -->
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% block title %}Majo Villafaina{% endblock %}</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <header class="topbar">
+    <div class="container topbar__inner">
+      <a class="brand" href="{{ url_for('home') }}">
+        <span class="brand__dot"></span>
+        <span class="brand__text">Majo Villafaina</span>
+      </a>
+
+      <nav class="nav">
+        <a class="nav__link" href="{{ url_for('home') }}">Inicio</a>
+        <a class="nav__link" href="{{ url_for('about') }}">Sobre</a>
+        <a class="nav__link nav__cta" href="{{ url_for('contact') }}">Contacto</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    {% block content %}{% endblock %}
+  </main>
+
+  <footer class="footer">
+    <div class="container footer__inner">
+      <div class="muted">© {{ 2026 }} · Majo Villafaina</div>
+      <div class="muted">Feldenkrais · Danza · Pedagogía</div>
+    </div>
+  </footer>
+</body>
+</html>
