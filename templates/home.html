@@ -1,68 +1,33 @@
-<!-- C:\Users\Usuario\Desktop\projectos\majo_villama\templates\home.html -->
-{% extends "base.html" %}
-{% block title %}Inicio · Majo Villafaina{% endblock %}
+{% extends 'base.html' %}
+{% block title %}Majo Villafaina{% endblock %}
+
 {% block content %}
-
 <section class="hero">
-  <div class="hero__card">
-    <h1>Movimiento con sentido.</h1>
-    <p class="lead">
-      Feldenkrais, danza y pedagogía para afinar tu atención, tu cuerpo y tu presencia.
-    </p>
-
-    <div class="hero__actions">
-      <a class="btn btn--primary" href="{{ url_for('contact') }}">Pedir info</a>
-      <a class="btn btn--ghost" href="{{ url_for('about') }}">Conocer a Majo</a>
-    </div>
-
-    <div class="hero__grid">
-      <div class="pill">Sesiones individuales</div>
-      <div class="pill">Clases / talleres</div>
-      <div class="pill">Acompañamiento creativo</div>
-      <div class="pill">Improvisación / partnering</div>
-    </div>
-  </div>
-
-  <div class="hero__side">
-    <div class="card">
-      <h3>Qué vas a notar</h3>
-      <ul class="list">
-        <li>Más comodidad en movimientos cotidianos</li>
-        <li>Menos esfuerzo, más eficiencia</li>
-        <li>Mejor respiración y coordinación</li>
-        <li>Más claridad y calma</li>
-      </ul>
-    </div>
-
-    <div class="card">
-      <h3>Formato</h3>
-      <p class="muted">
-        Online o presencial (según ciudad). Agenda flexible. Primera conversación corta para orientar.
-      </p>
+  <div class="hero__content">
+    <h1>Habitar el cuerpo. Moverse con claridad.</h1>
+    <p class="lead">Feldenkrais · Danza · Pedagogía</p>
+    <div class="hero__cta">
+      <a class="btn" href="{{ url_for('about') }}">Sesiones</a>
+      <a class="btn btn--ghost" href="{{ url_for('contact') }}">Contacto</a>
     </div>
   </div>
 </section>
 
-<section class="section">
-  <div class="section__header">
-    <h2>Una web básica pero chula</h2>
-    <p class="muted">Esta es la base v1.0: limpia, rápida y fácil de ampliar.</p>
-  </div>
-
-  <div class="cards">
+<section class="block">
+  <h2>Qué hago</h2>
+  <div class="grid3">
     <div class="card">
-      <h3>Feldenkrais</h3>
-      <p>Aprender a aprender, desde la sensación, sin forzar.</p>
+      <h3>Qué es</h3>
+      <p>Un método de aprendizaje somático para mejorar la organización del movimiento y la percepción corporal.</p>
     </div>
     <div class="card">
-      <h3>Danza</h3>
-      <p>Lenguaje, presencia y escucha: movimiento como pensamiento.</p>
+      <h3>Para quién</h3>
+      <p>Personas con dolor, estrés o limitaciones… y también bailarines y curiosos del movimiento.</p>
     </div>
     <div class="card">
-      <h3>Pedagogía</h3>
-      <p>Un enfoque práctico, cercano y con intención.</p>
+      <h3>Cómo es</h3>
+      <p>Sesiones individuales o clases guiadas: exploración suave, precisa y con efectos reales en el día a día.</p>
     </div>
   </div>
 </section>
-
 {% endblock %}
