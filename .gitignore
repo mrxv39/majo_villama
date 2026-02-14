@@ -1,9 +1,14 @@
+# Entornos virtuales
+.venv/
+venv/
+
+# Cache Python
 __pycache__/
 *.pyc
-*.log
+
+# Variables de entorno
 .env
-_backup_scaffold_*/
 
-*.bak_*
-
-.venv/
+# Archivos del sistema
+.DS_Store
+Thumbs.db
