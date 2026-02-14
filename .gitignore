@@ -12,3 +12,7 @@ __pycache__/
 # Archivos del sistema
 .DS_Store
 Thumbs.db
+
+*_backup*/
+
+*.bak_*
