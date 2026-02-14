@@ -1,32 +1,34 @@
 {% extends 'base.html' %}
-{% block title %}Majo Villafaina{% endblock %}
+{% block title %}Majo Villama{% endblock %}
 
 {% block content %}
-<section class="hero">
+<section class="hero hero--art">
   <div class="hero__content">
-    <h1>Habitar el cuerpo. Moverse con claridad.</h1>
-    <p class="lead">Feldenkrais · Danza · Pedagogía</p>
+    <h1>Habitar el cuerpo.<br>Moverse con claridad.</h1>
+    <p class="lead">
+      Acompañamiento a través del Método Feldenkrais y la práctica del movimiento.
+    </p>
     <div class="hero__cta">
-      <a class="btn" href="{{ url_for('about') }}">Sesiones</a>
+      <a class="btn" href="{{ url_for('about') }}">Ver sesiones</a>
       <a class="btn btn--ghost" href="{{ url_for('contact') }}">Contacto</a>
     </div>
   </div>
 </section>
 
 <section class="block">
-  <h2>Qué hago</h2>
+  <h2>El trabajo</h2>
   <div class="grid3">
     <div class="card">
-      <h3>Qué es</h3>
-      <p>Un método de aprendizaje somático para mejorar la organización del movimiento y la percepción corporal.</p>
+      <h3>Escucha</h3>
+      <p>Explorar el movimiento desde la atención y la precisión.</p>
     </div>
     <div class="card">
-      <h3>Para quién</h3>
-      <p>Personas con dolor, estrés o limitaciones… y también bailarines y curiosos del movimiento.</p>
+      <h3>Aprendizaje</h3>
+      <p>Reorganizar patrones corporales para ganar libertad.</p>
     </div>
     <div class="card">
-      <h3>Cómo es</h3>
-      <p>Sesiones individuales o clases guiadas: exploración suave, precisa y con efectos reales en el día a día.</p>
+      <h3>Presencia</h3>
+      <p>Habitar el cuerpo con menos esfuerzo y más conciencia.</p>
     </div>
   </div>
 </section>
