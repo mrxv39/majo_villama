@@ -1,23 +1,14 @@
-# Entornos virtuales
+# Venv / cache
 .venv/
 venv/
-
-# Cache Python
 __pycache__/
 *.pyc
-
-# Variables de entorno
 .env
 
-# Backups / temporales
-_backup_*/
-*.bak_*
+# Assets pesados/temporales
 *.zip
-
-# Sistema
-.DS_Store
-Thumbs.db
-
-# legacy images folder (do not use)
 img/
 
+# Permitimos la carpeta canónica para web
+!static/img/
+!static/img/.gitkeep
