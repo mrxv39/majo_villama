@@ -1,0 +1,15 @@
+{
+  "project": "majo_villama",
+  "version": 13,
+  "tasks": [
+    {
+      "id": "T_USER_001",
+      "title": "prueba 1",
+      "implemented": false,
+      "critical": false,
+      "state": "todo",
+      "deps": [],
+      "test_id": null
+    }
+  ]
+}
