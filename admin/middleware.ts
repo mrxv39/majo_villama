@@ -1,15 +1,15 @@
 import { auth } from "@/lib/auth";
-import { NextRequest, NextResponse } from "next/server";
+import { NextResponse } from "next/server";
 
-export default auth((req: NextRequest) => {
+export default auth((req) => {
   if (!req.auth && req.nextUrl.pathname.startsWith("/admin")) {
-    const loginUrl = new URL("/login", req.nextUrl.origin);
-    loginUrl.searchParams.append("callbackUrl", req.nextUrl.pathname);
-    return NextResponse.redirect(loginUrl);
-  }
-  return NextResponse.next();
-});
+      const loginUrl = new URL("/login", req.nextUrl.origin);
+          loginUrl.searchParams.append("callbackUrl", req.nextUrl.pathname);
+              return NextResponse.redirect(loginUrl);
+                }
+                  return NextResponse.next();
+                  });
 
-export const config = {
-  matcher: ["/admin/:path*", "/api/admin/:path*"],
-};
+                  export const config = {
+                    matcher: ["/admin/:path*", "/api/admin/:path*"],
+                    };
