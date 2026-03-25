@@ -1,0 +1,2352 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Majo Villafaina — Feldenkrais y Danza en Barcelona</title>
+    <meta name="description" content="Clases online y presenciales del Método Feldenkrais con Majo Villafaina. Mejora tu movilidad, reduce el dolor y reconecta con tu cuerpo. Barcelona.">
+    <style>
+        /* ===== RESET & BASE ===== */
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+        :root {
+            --color-bg: #FAF8F5;
+            --color-text: #2C2C2C;
+            --color-text-light: #5A5A5A;
+            --color-accent: #8B7355;
+            --color-accent-light: #C4A97D;
+            --color-accent-dark: #6B5740;
+            --color-warm: #E8DFD3;
+            --color-green: #7A8B6F;
+            --color-green-light: #E8EDE5;
+            --color-white: #FFFFFF;
+            --font-heading: 'Georgia', 'Times New Roman', serif;
+            --font-body: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+            --max-width: 1080px;
+            --radius: 12px;
+        }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: var(--font-body);
+            color: var(--color-text);
+            background: var(--color-bg);
+            line-height: 1.7;
+            font-size: 17px;
+        }
+
+        img { max-width: 100%; height: auto; display: block; }
+        a { color: var(--color-accent-dark); text-decoration: none; }
+        a:hover { color: var(--color-accent); }
+
+        .container {
+            max-width: var(--max-width);
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* ===== NAV ===== */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(250, 248, 245, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 100;
+            border-bottom: 1px solid var(--color-warm);
+        }
+
+        nav .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 64px;
+        }
+
+        .nav-logo {
+            font-family: var(--font-heading);
+            font-size: 1.2rem;
+            color: var(--color-text);
+            font-weight: normal;
+            letter-spacing: 0.02em;
+        }
+
+        .nav-links { display: flex; gap: 28px; list-style: none; }
+
+        .nav-links a {
+            font-size: 0.9rem;
+            color: var(--color-text-light);
+            letter-spacing: 0.03em;
+            text-transform: uppercase;
+            transition: color 0.2s;
+        }
+
+        .nav-links a:hover { color: var(--color-accent); }
+
+        .nav-toggle { display: none; background: none; border: none; cursor: pointer; padding: 8px; }
+        .nav-toggle span {
+            display: block; width: 24px; height: 2px;
+            background: var(--color-text); margin: 5px 0;
+            transition: 0.3s;
+        }
+
+        /* ===== HERO ===== */
+        .hero {
+            padding: 140px 24px 100px;
+            text-align: center;
+            background: linear-gradient(180deg, var(--color-warm) 0%, var(--color-bg) 100%);
+        }
+
+        .hero h1 {
+            font-family: var(--font-heading);
+            font-size: clamp(2.2rem, 5vw, 3.5rem);
+            font-weight: normal;
+            line-height: 1.2;
+            margin-bottom: 24px;
+            color: var(--color-text);
+        }
+
+        .hero h1 em {
+            font-style: italic;
+            color: var(--color-accent);
+        }
+
+        .hero p {
+            font-size: 1.15rem;
+            color: var(--color-text-light);
+            max-width: 600px;
+            margin: 0 auto 40px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 16px 40px;
+            background: var(--color-accent);
+            color: var(--color-white);
+            border: none;
+            border-radius: 50px;
+            font-size: 1rem;
+            font-family: var(--font-body);
+            letter-spacing: 0.04em;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-transform: uppercase;
+        }
+
+        .btn:hover {
+            background: var(--color-accent-dark);
+            color: var(--color-white);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(139, 115, 85, 0.3);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: var(--color-accent);
+            border: 2px solid var(--color-accent);
+        }
+
+        .btn-outline:hover {
+            background: var(--color-accent);
+            color: var(--color-white);
+        }
+
+        /* ===== SECTIONS ===== */
+        section { padding: 80px 0; }
+
+        .section-title {
+            font-family: var(--font-heading);
+            font-size: clamp(1.8rem, 3.5vw, 2.4rem);
+            font-weight: normal;
+            text-align: center;
+            margin-bottom: 16px;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: var(--color-text-light);
+            max-width: 600px;
+            margin: 0 auto 48px;
+            font-size: 1.05rem;
+        }
+
+        /* ===== QUE ES FELDENKRAIS ===== */
+        .que-es { background: var(--color-white); }
+
+        .que-es-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .que-es-text h3 {
+            font-family: var(--font-heading);
+            font-size: 1.3rem;
+            margin-bottom: 16px;
+            color: var(--color-accent-dark);
+        }
+
+        .que-es-text p { margin-bottom: 16px; color: var(--color-text-light); }
+
+        .que-es-visual {
+            background: var(--color-green-light);
+            border-radius: var(--radius);
+            padding: 48px;
+            text-align: center;
+            min-height: 360px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .que-es-visual .icon-placeholder {
+            font-size: 4rem;
+            margin-bottom: 24px;
+            opacity: 0.6;
+        }
+
+        .que-es-visual blockquote {
+            font-family: var(--font-heading);
+            font-size: 1.3rem;
+            font-style: italic;
+            color: var(--color-green);
+            line-height: 1.5;
+        }
+
+        /* ===== BENEFICIOS ===== */
+        .beneficios-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 32px;
+        }
+
+        .beneficio-card {
+            background: var(--color-white);
+            padding: 36px 28px;
+            border-radius: var(--radius);
+            text-align: center;
+            border: 1px solid var(--color-warm);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .beneficio-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 24px rgba(0,0,0,0.06);
+        }
+
+        .beneficio-icon {
+            font-size: 2.4rem;
+            margin-bottom: 16px;
+        }
+
+        .beneficio-card h3 {
+            font-family: var(--font-heading);
+            font-size: 1.15rem;
+            margin-bottom: 12px;
+        }
+
+        .beneficio-card p {
+            color: var(--color-text-light);
+            font-size: 0.95rem;
+        }
+
+        /* ===== SOBRE MI ===== */
+        .sobre-mi { background: var(--color-white); }
+
+        .sobre-mi-grid {
+            display: grid;
+            grid-template-columns: 1fr 1.2fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .sobre-mi-foto {
+            background: var(--color-warm);
+            border-radius: var(--radius);
+            min-height: 400px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1rem;
+            color: var(--color-text-light);
+        }
+
+        .sobre-mi-bio h3 {
+            font-family: var(--font-heading);
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+        }
+
+        .sobre-mi-bio p {
+            color: var(--color-text-light);
+            margin-bottom: 16px;
+        }
+
+        .credenciales {
+            display: flex;
+            gap: 24px;
+            margin-top: 28px;
+            flex-wrap: wrap;
+        }
+
+        .credencial {
+            background: var(--color-bg);
+            padding: 12px 20px;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            color: var(--color-accent-dark);
+            border: 1px solid var(--color-warm);
+        }
+
+        /* ===== CLASES ONLINE ===== */
+        .clases-online { background: var(--color-green-light); }
+
+        .clases-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 32px;
+            margin-bottom: 48px;
+        }
+
+        .clase-card {
+            background: var(--color-white);
+            padding: 36px;
+            border-radius: var(--radius);
+            border: 1px solid rgba(122, 139, 111, 0.2);
+        }
+
+        .clase-card .badge {
+            display: inline-block;
+            background: var(--color-green);
+            color: white;
+            padding: 4px 14px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 16px;
+        }
+
+        .clase-card .badge.popular {
+            background: var(--color-accent);
+        }
+
+        .clase-card h3 {
+            font-family: var(--font-heading);
+            font-size: 1.3rem;
+            margin-bottom: 12px;
+        }
+
+        .clase-card .descripcion {
+            color: var(--color-text-light);
+            margin-bottom: 20px;
+            font-size: 0.95rem;
+        }
+
+        .clase-detalle {
+            display: flex;
+            justify-content: space-between;
+            padding: 12px 0;
+            border-top: 1px solid var(--color-warm);
+            font-size: 0.95rem;
+        }
+
+        .clase-detalle span:first-child { color: var(--color-text-light); }
+        .clase-detalle span:last-child { font-weight: 600; }
+
+        .precio-nota {
+            text-align: center;
+            color: var(--color-text-light);
+            font-size: 0.95rem;
+            max-width: 600px;
+            margin: 0 auto 32px;
+            font-style: italic;
+        }
+
+        .precio-range {
+            text-align: center;
+            margin-bottom: 32px;
+        }
+
+        .precio-range .precio {
+            font-family: var(--font-heading);
+            font-size: 2.2rem;
+            color: var(--color-accent-dark);
+        }
+
+        .precio-range .periodo {
+            color: var(--color-text-light);
+            font-size: 1rem;
+        }
+
+        /* ===== COMO FUNCIONA ===== */
+        .como-funciona-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 24px;
+        }
+
+        .paso {
+            text-align: center;
+            padding: 24px 16px;
+        }
+
+        .paso-numero {
+            display: inline-flex;
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background: var(--color-accent);
+            color: white;
+            align-items: center;
+            justify-content: center;
+            font-family: var(--font-heading);
+            font-size: 1.2rem;
+            margin-bottom: 16px;
+        }
+
+        .paso h3 {
+            font-family: var(--font-heading);
+            font-size: 1.05rem;
+            margin-bottom: 8px;
+        }
+
+        .paso p {
+            color: var(--color-text-light);
+            font-size: 0.9rem;
+        }
+
+        /* ===== TESTIMONIOS ===== */
+        .testimonios { background: var(--color-white); }
+
+        .testimonios-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 28px;
+        }
+
+        .testimonio {
+            padding: 32px;
+            background: var(--color-bg);
+            border-radius: var(--radius);
+            border: 1px solid var(--color-warm);
+        }
+
+        .testimonio .estrellas {
+            color: var(--color-accent-light);
+            font-size: 1.1rem;
+            margin-bottom: 16px;
+        }
+
+        .testimonio p {
+            color: var(--color-text-light);
+            font-size: 0.95rem;
+            font-style: italic;
+            margin-bottom: 16px;
+        }
+
+        .testimonio .autor {
+            font-weight: 600;
+            font-size: 0.9rem;
+            color: var(--color-text);
+        }
+
+        .testimonio .detalle {
+            font-size: 0.85rem;
+            color: var(--color-text-light);
+        }
+
+        /* ===== MINI CURSO ===== */
+        .mini-curso {
+            background: var(--color-warm);
+        }
+
+        .mini-curso-box {
+            max-width: 600px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .mini-curso-box .emoji-big {
+            font-size: 3rem;
+            margin-bottom: 16px;
+        }
+
+        .mini-curso-form {
+            display: flex;
+            gap: 12px;
+            margin-top: 24px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .mini-curso-form input {
+            padding: 14px 20px;
+            border: 1px solid var(--color-accent-light);
+            border-radius: 50px;
+            font-size: 1rem;
+            font-family: var(--font-body);
+            background: var(--color-white);
+            width: 280px;
+        }
+
+        .mini-curso-form input:focus {
+            outline: none;
+            border-color: var(--color-accent);
+        }
+
+        /* ===== INDIVIDUAL ===== */
+        .individual { background: var(--color-bg); }
+
+        .individual-grid {
+            display: grid;
+            grid-template-columns: 1.2fr 1fr;
+            gap: 48px;
+            align-items: center;
+        }
+
+        .individual-info h3 {
+            font-family: var(--font-heading);
+            font-size: 1.3rem;
+            margin-bottom: 16px;
+            color: var(--color-accent-dark);
+        }
+
+        .individual-info p {
+            color: var(--color-text-light);
+            margin-bottom: 14px;
+        }
+
+        .individual-info ul {
+            list-style: none;
+            margin: 20px 0;
+        }
+
+        .individual-info ul li {
+            padding: 8px 0;
+            padding-left: 24px;
+            position: relative;
+            color: var(--color-text-light);
+        }
+
+        .individual-info ul li::before {
+            content: '\2713';
+            position: absolute;
+            left: 0;
+            color: var(--color-green);
+            font-weight: bold;
+        }
+
+        .individual-precio {
+            background: var(--color-white);
+            padding: 36px;
+            border-radius: var(--radius);
+            border: 1px solid var(--color-warm);
+            text-align: center;
+        }
+
+        .individual-precio .precio-grande {
+            font-family: var(--font-heading);
+            font-size: 2.4rem;
+            color: var(--color-accent-dark);
+        }
+
+        .individual-precio .precio-sub {
+            color: var(--color-text-light);
+            margin: 8px 0 20px;
+        }
+
+        /* ===== REFERIDOS ===== */
+        .referidos {
+            background: linear-gradient(135deg, var(--color-green) 0%, #5a7050 100%);
+            color: white;
+            text-align: center;
+            padding: 48px 0;
+        }
+
+        .referidos .section-title { color: white; font-size: 1.6rem; margin-bottom: 12px; }
+        .referidos p { color: rgba(255,255,255,0.85); max-width: 550px; margin: 0 auto; }
+
+        .referidos-pasos {
+            display: flex;
+            justify-content: center;
+            gap: 48px;
+            margin-top: 32px;
+            flex-wrap: wrap;
+        }
+
+        .referido-paso {
+            text-align: center;
+        }
+
+        .referido-paso .num {
+            display: inline-flex;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.2);
+            color: white;
+            align-items: center;
+            justify-content: center;
+            font-family: var(--font-heading);
+            margin-bottom: 8px;
+        }
+
+        .referido-paso p {
+            font-size: 0.9rem;
+            color: rgba(255,255,255,0.9);
+        }
+
+        /* ===== REGALO ===== */
+        .regalo-card {
+            background: var(--color-white);
+            padding: 36px;
+            border-radius: var(--radius);
+            border: 1px solid var(--color-warm);
+            text-align: center;
+        }
+
+        .regalo-opciones {
+            display: flex;
+            justify-content: center;
+            gap: 24px;
+            margin: 24px 0;
+            flex-wrap: wrap;
+        }
+
+        .regalo-opcion {
+            background: var(--color-bg);
+            padding: 20px 28px;
+            border-radius: var(--radius);
+            border: 2px solid var(--color-warm);
+            min-width: 160px;
+            transition: border-color 0.2s;
+        }
+
+        .regalo-opcion:hover {
+            border-color: var(--color-accent);
+        }
+
+        .regalo-opcion .regalo-precio {
+            font-family: var(--font-heading);
+            font-size: 1.5rem;
+            color: var(--color-accent-dark);
+        }
+
+        .regalo-opcion .regalo-desc {
+            font-size: 0.85rem;
+            color: var(--color-text-light);
+            margin-top: 4px;
+        }
+
+        /* ===== PODCAST ===== */
+        .podcast {
+            background: var(--color-white);
+        }
+
+        .podcast-box {
+            display: grid;
+            grid-template-columns: auto 1fr;
+            gap: 36px;
+            align-items: center;
+            max-width: 700px;
+            margin: 0 auto;
+            background: var(--color-bg);
+            padding: 36px;
+            border-radius: var(--radius);
+            border: 1px solid var(--color-warm);
+        }
+
+        .podcast-icon {
+            font-size: 4rem;
+            opacity: 0.8;
+        }
+
+        .podcast-text h3 {
+            font-family: var(--font-heading);
+            font-size: 1.2rem;
+            margin-bottom: 8px;
+        }
+
+        .podcast-text p {
+            color: var(--color-text-light);
+            font-size: 0.95rem;
+            margin-bottom: 12px;
+        }
+
+        .podcast-links {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .podcast-link {
+            display: inline-block;
+            padding: 8px 16px;
+            background: var(--color-white);
+            border: 1px solid var(--color-warm);
+            border-radius: 20px;
+            font-size: 0.85rem;
+            color: var(--color-text);
+            transition: all 0.2s;
+        }
+
+        .podcast-link:hover {
+            border-color: var(--color-accent);
+            color: var(--color-accent);
+        }
+
+        @media (max-width: 768px) {
+            .individual-grid { grid-template-columns: 1fr; }
+            .podcast-box { grid-template-columns: 1fr; text-align: center; }
+        }
+
+        /* ===== CLASE GRATUITA ===== */
+        .clase-gratuita {
+            background: linear-gradient(135deg, var(--color-accent) 0%, var(--color-accent-dark) 100%);
+            color: white;
+            text-align: center;
+        }
+
+        .clase-gratuita .section-title { color: white; }
+        .clase-gratuita .section-subtitle { color: rgba(255,255,255,0.85); }
+
+        .clase-gratuita .btn {
+            background: white;
+            color: var(--color-accent-dark);
+        }
+
+        .clase-gratuita .btn:hover {
+            background: var(--color-bg);
+            color: var(--color-accent-dark);
+        }
+
+        /* ===== FORMULARIO ===== */
+        .formulario { background: var(--color-bg); }
+
+        .form-wrapper {
+            max-width: 640px;
+            margin: 0 auto;
+            background: var(--color-white);
+            padding: 48px;
+            border-radius: var(--radius);
+            border: 1px solid var(--color-warm);
+        }
+
+        .form-group {
+            margin-bottom: 24px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 6px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--color-text);
+        }
+
+        .form-group .hint {
+            font-size: 0.82rem;
+            color: var(--color-text-light);
+            margin-bottom: 6px;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px 16px;
+            border: 1px solid var(--color-warm);
+            border-radius: 8px;
+            font-size: 1rem;
+            font-family: var(--font-body);
+            background: var(--color-bg);
+            color: var(--color-text);
+            transition: border-color 0.2s;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--color-accent);
+        }
+
+        .form-group textarea { resize: vertical; min-height: 100px; }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+        }
+
+        .form-section-title {
+            font-family: var(--font-heading);
+            font-size: 1.1rem;
+            margin: 32px 0 16px;
+            padding-top: 16px;
+            border-top: 1px solid var(--color-warm);
+            color: var(--color-accent-dark);
+        }
+
+        .form-section-title:first-of-type {
+            margin-top: 0;
+            padding-top: 0;
+            border-top: none;
+        }
+
+        .form-submit {
+            text-align: center;
+            margin-top: 32px;
+        }
+
+        .form-legal {
+            font-size: 0.82rem;
+            color: var(--color-text-light);
+            text-align: center;
+            margin-top: 16px;
+        }
+
+        .form-error {
+            color: #c44;
+            font-size: 0.82rem;
+            margin-top: 4px;
+            display: none;
+        }
+
+        .form-error.visible {
+            display: block;
+        }
+
+        /* ===== PRESENCIAL ===== */
+        .presencial { background: var(--color-white); }
+
+        .presencial-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+        }
+
+        .presencial-card {
+            padding: 28px;
+            background: var(--color-bg);
+            border-radius: var(--radius);
+            border: 1px solid var(--color-warm);
+        }
+
+        .presencial-card h3 {
+            font-family: var(--font-heading);
+            font-size: 1.1rem;
+            margin-bottom: 12px;
+        }
+
+        .presencial-card p {
+            color: var(--color-text-light);
+            font-size: 0.9rem;
+            margin-bottom: 8px;
+        }
+
+        .presencial-card .horario {
+            font-weight: 600;
+            color: var(--color-text);
+        }
+
+        /* ===== FAQ ===== */
+        .faq-list {
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .faq-item {
+            border-bottom: 1px solid var(--color-warm);
+        }
+
+        .faq-question {
+            width: 100%;
+            background: none;
+            border: none;
+            padding: 20px 0;
+            font-size: 1.05rem;
+            font-family: var(--font-heading);
+            color: var(--color-text);
+            text-align: left;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .faq-question::after {
+            content: '+';
+            font-size: 1.4rem;
+            color: var(--color-accent);
+            transition: transform 0.3s;
+        }
+
+        .faq-item.active .faq-question::after {
+            transform: rotate(45deg);
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
+
+        .faq-answer p {
+            padding: 0 0 20px;
+            color: var(--color-text-light);
+            font-size: 0.95rem;
+        }
+
+        .faq-item.active .faq-answer {
+            max-height: 300px;
+        }
+
+        /* ===== FOOTER ===== */
+        footer {
+            background: var(--color-text);
+            color: rgba(255,255,255,0.7);
+            padding: 48px 0 24px;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 1.5fr 1fr 1fr;
+            gap: 48px;
+            margin-bottom: 32px;
+        }
+
+        footer h4 {
+            color: white;
+            font-family: var(--font-heading);
+            font-size: 1.1rem;
+            margin-bottom: 16px;
+            font-weight: normal;
+        }
+
+        footer p, footer a {
+            font-size: 0.9rem;
+            color: rgba(255,255,255,0.6);
+            line-height: 2;
+        }
+
+        footer a:hover { color: white; }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255,255,255,0.1);
+            padding-top: 24px;
+            text-align: center;
+            font-size: 0.85rem;
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .nav-links.active {
+                display: flex;
+                flex-direction: column;
+                position: absolute;
+                top: 64px;
+                left: 0;
+                width: 100%;
+                background: var(--color-bg);
+                padding: 24px;
+                gap: 16px;
+                border-bottom: 1px solid var(--color-warm);
+            }
+            .nav-toggle { display: block; }
+
+            .que-es-grid,
+            .sobre-mi-grid,
+            .clases-grid,
+            .individual-grid { grid-template-columns: 1fr; }
+
+            .beneficios-grid,
+            .testimonios-grid,
+            .presencial-grid { grid-template-columns: 1fr; }
+
+            .podcast-box { grid-template-columns: 1fr; text-align: center; }
+
+            .como-funciona-grid { grid-template-columns: repeat(2, 1fr); }
+
+            .footer-grid { grid-template-columns: 1fr; gap: 32px; }
+
+            .form-wrapper { padding: 28px 20px; }
+            .form-row { grid-template-columns: 1fr; }
+
+            .hero { padding: 120px 24px 60px; }
+            section { padding: 60px 0; }
+        }
+
+        @media (max-width: 480px) {
+            .como-funciona-grid { grid-template-columns: 1fr; }
+            .hero h1 { font-size: 1.8rem; }
+            .section-title { font-size: 1.4rem; }
+            .referidos-pasos { flex-direction: column; align-items: center; }
+        }
+
+        /* ===== ANIMATIONS ===== */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* ===== VARIANTES UI — HERO ===== */
+        /* Variante A (default): conservadora — sin cambios adicionales */
+
+        /* Variante B: moderna — más contraste, tipografía bold, fondo más vivo */
+        [data-variant="B"].hero {
+            background: linear-gradient(135deg, #D4C5B0 0%, #F5EDE3 50%, var(--color-bg) 100%);
+            padding: 160px 24px 120px;
+        }
+        [data-variant="B"].hero h1 {
+            font-weight: 700;
+            font-size: clamp(2.6rem, 6vw, 4rem);
+            letter-spacing: -0.02em;
+        }
+        [data-variant="B"].hero h1 em {
+            color: var(--color-green);
+            text-decoration: underline;
+            text-decoration-color: var(--color-accent-light);
+            text-underline-offset: 6px;
+        }
+        [data-variant="B"].hero p {
+            font-size: 1.25rem;
+            max-width: 650px;
+        }
+        [data-variant="B"].hero .btn {
+            padding: 18px 48px;
+            font-size: 1.1rem;
+            background: var(--color-green);
+            box-shadow: 0 4px 16px rgba(122, 139, 111, 0.3);
+        }
+        [data-variant="B"].hero .btn:hover {
+            background: #5a7050;
+        }
+
+        /* Variante C: minimalista — menos elementos, más aire, foco en el contenido */
+        [data-variant="C"].hero {
+            background: var(--color-white);
+            padding: 180px 24px 140px;
+            border-bottom: 1px solid var(--color-warm);
+        }
+        [data-variant="C"].hero h1 {
+            font-size: clamp(2rem, 4vw, 3rem);
+            letter-spacing: 0.04em;
+            text-transform: none;
+        }
+        [data-variant="C"].hero h1 em {
+            color: var(--color-text);
+            font-style: normal;
+            border-bottom: 2px solid var(--color-accent);
+        }
+        [data-variant="C"].hero p {
+            font-size: 1rem;
+            max-width: 500px;
+            color: var(--color-text-light);
+        }
+        [data-variant="C"].hero .btn {
+            background: transparent;
+            color: var(--color-accent-dark);
+            border: 1px solid var(--color-accent);
+            padding: 14px 36px;
+            font-size: 0.95rem;
+        }
+        [data-variant="C"].hero .btn:hover {
+            background: var(--color-accent);
+            color: white;
+        }
+
+        /* ===== VARIANTES UI — BENEFICIOS ===== */
+        /* Variante A (default): tarjetas en grid 3 columnas — sin cambios */
+
+        /* Variante B: moderna — tarjetas más grandes, iconos más prominentes, colores */
+        [data-variant="B"].beneficios .beneficios-grid {
+            grid-template-columns: repeat(2, 1fr);
+            gap: 24px;
+        }
+        [data-variant="B"].beneficios .beneficio-card {
+            background: linear-gradient(145deg, var(--color-white), var(--color-green-light));
+            padding: 40px 32px;
+            text-align: left;
+            border: none;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.04);
+        }
+        [data-variant="B"].beneficios .beneficio-icon {
+            font-size: 3rem;
+            margin-bottom: 20px;
+        }
+        [data-variant="B"].beneficios .beneficio-card h3 {
+            font-size: 1.25rem;
+            color: var(--color-green);
+        }
+
+        /* Variante C: minimalista — lista simple, sin tarjetas */
+        [data-variant="C"].beneficios .beneficios-grid {
+            grid-template-columns: 1fr;
+            gap: 0;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        [data-variant="C"].beneficios .beneficio-card {
+            background: none;
+            border: none;
+            border-bottom: 1px solid var(--color-warm);
+            border-radius: 0;
+            padding: 24px 0;
+            text-align: left;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+        [data-variant="C"].beneficios .beneficio-card:hover {
+            transform: none;
+            box-shadow: none;
+        }
+        [data-variant="C"].beneficios .beneficio-icon {
+            font-size: 2rem;
+            margin-bottom: 0;
+            flex-shrink: 0;
+        }
+        [data-variant="C"].beneficios .beneficio-card h3 {
+            font-size: 1rem;
+            margin-bottom: 4px;
+        }
+        [data-variant="C"].beneficios .beneficio-card p {
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 768px) {
+            [data-variant="B"].beneficios .beneficios-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* ===== VARIANTES UI — TESTIMONIOS ===== */
+        /* Variante A (default): tarjetas grid 3 cols — sin cambios */
+
+        /* Variante B: moderna — citas grandes, fondo verde, layout destacado */
+        [data-variant="B"].testimonios { background: var(--color-green-light); }
+        [data-variant="B"].testimonios .testimonios-grid {
+            grid-template-columns: 1fr;
+            gap: 20px;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        [data-variant="B"].testimonios .testimonio {
+            background: var(--color-white);
+            border: none;
+            padding: 40px;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.04);
+            text-align: center;
+        }
+        [data-variant="B"].testimonios .testimonio p {
+            font-size: 1.15rem;
+            line-height: 1.8;
+            color: var(--color-text);
+        }
+        [data-variant="B"].testimonios .testimonio .autor {
+            color: var(--color-green);
+        }
+
+        /* Variante C: minimalista — sin tarjetas, citas alineadas a la izquierda */
+        [data-variant="C"].testimonios .testimonios-grid {
+            grid-template-columns: 1fr;
+            gap: 0;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        [data-variant="C"].testimonios .testimonio {
+            background: none;
+            border: none;
+            border-bottom: 1px solid var(--color-warm);
+            border-radius: 0;
+            padding: 28px 0;
+        }
+        [data-variant="C"].testimonios .testimonio .estrellas { display: none; }
+        [data-variant="C"].testimonios .testimonio p {
+            font-size: 1rem;
+            font-style: normal;
+            color: var(--color-text);
+        }
+
+        /* ===== VARIANTES UI — CLASES ONLINE ===== */
+        /* Variante A (default): 2 tarjetas grid — sin cambios */
+
+        /* Variante B: moderna — tarjetas con borde de color, más prominentes */
+        [data-variant="B"].clases-online .clase-card {
+            border: 2px solid var(--color-green);
+            padding: 40px;
+            box-shadow: 0 4px 20px rgba(122, 139, 111, 0.12);
+        }
+        [data-variant="B"].clases-online .clase-card h3 {
+            font-size: 1.5rem;
+            color: var(--color-green);
+        }
+        [data-variant="B"].clases-online .clase-card .badge {
+            font-size: 0.85rem;
+            padding: 6px 18px;
+        }
+        [data-variant="B"].clases-online .precio-range .precio {
+            font-size: 2rem;
+            color: var(--color-green);
+        }
+
+        /* Variante C: minimalista — sin tarjetas, datos en lista limpia */
+        [data-variant="C"].clases-online { background: var(--color-white); }
+        [data-variant="C"].clases-online .clases-grid {
+            grid-template-columns: 1fr;
+            gap: 0;
+            max-width: 600px;
+            margin: 0 auto 48px;
+        }
+        [data-variant="C"].clases-online .clase-card {
+            background: none;
+            border: none;
+            border-bottom: 1px solid var(--color-warm);
+            border-radius: 0;
+            padding: 32px 0;
+        }
+        [data-variant="C"].clases-online .clase-card .badge {
+            background: transparent;
+            color: var(--color-accent);
+            border: 1px solid var(--color-accent);
+        }
+        [data-variant="C"].clases-online .clase-card .badge.popular {
+            background: transparent;
+            color: var(--color-accent-dark);
+            border-color: var(--color-accent-dark);
+        }
+
+        /* ===== FOCUS STATES — ACCESIBILIDAD ===== */
+        a:focus-visible,
+        button:focus-visible,
+        input:focus-visible,
+        select:focus-visible,
+        textarea:focus-visible {
+            outline: 2px solid var(--color-accent);
+            outline-offset: 2px;
+        }
+
+        .btn:focus-visible {
+            outline: 2px solid var(--color-accent-dark);
+            outline-offset: 3px;
+            box-shadow: 0 0 0 4px rgba(139, 115, 85, 0.2);
+        }
+
+        /* ===== DOCTOR FEEDBACK WIDGET ===== */
+        .doctor-widget {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 9999;
+            font-family: var(--font-body);
+            font-size: 14px;
+        }
+
+        .doctor-widget-toggle {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background: var(--color-accent);
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-size: 20px;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.15);
+            transition: transform 0.2s;
+        }
+
+        .doctor-widget-toggle:hover {
+            transform: scale(1.1);
+        }
+
+        .doctor-widget-panel {
+            display: none;
+            position: absolute;
+            bottom: 60px;
+            right: 0;
+            width: 300px;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.15);
+            padding: 20px;
+            border: 1px solid var(--color-warm);
+        }
+
+        .doctor-widget-panel.open {
+            display: block;
+        }
+
+        .doctor-widget-panel h4 {
+            font-family: var(--font-heading);
+            font-size: 1rem;
+            margin-bottom: 12px;
+            font-weight: normal;
+        }
+
+        .doctor-variant-btns {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 16px;
+        }
+
+        .doctor-variant-btn {
+            flex: 1;
+            padding: 10px;
+            border: 2px solid var(--color-warm);
+            border-radius: 8px;
+            background: white;
+            cursor: pointer;
+            font-family: var(--font-body);
+            font-size: 14px;
+            font-weight: 600;
+            text-align: center;
+            transition: all 0.2s;
+        }
+
+        .doctor-variant-btn:hover {
+            border-color: var(--color-accent);
+        }
+
+        .doctor-variant-btn.active {
+            background: var(--color-accent);
+            color: white;
+            border-color: var(--color-accent);
+        }
+
+        .doctor-rating {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 12px;
+        }
+
+        .doctor-rating button {
+            flex: 1;
+            padding: 8px;
+            border: 1px solid var(--color-warm);
+            border-radius: 6px;
+            background: white;
+            cursor: pointer;
+            font-size: 18px;
+            transition: all 0.2s;
+        }
+
+        .doctor-rating button:hover {
+            border-color: var(--color-accent);
+        }
+
+        .doctor-rating button.active-like {
+            background: var(--color-green-light);
+            border-color: var(--color-green);
+        }
+
+        .doctor-rating button.active-dislike {
+            background: #FDEDEC;
+            border-color: #C0392B;
+        }
+
+        .doctor-notes {
+            width: 100%;
+            padding: 8px 12px;
+            border: 1px solid var(--color-warm);
+            border-radius: 6px;
+            font-family: var(--font-body);
+            font-size: 13px;
+            resize: vertical;
+            min-height: 60px;
+            margin-bottom: 12px;
+        }
+
+        .doctor-notes:focus {
+            outline: none;
+            border-color: var(--color-accent);
+        }
+
+        .doctor-approve-btn {
+            width: 100%;
+            padding: 10px;
+            background: var(--color-green);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-family: var(--font-body);
+            font-size: 14px;
+            transition: background 0.2s;
+        }
+
+        .doctor-approve-btn:hover {
+            background: #5a7050;
+        }
+
+        .doctor-progress {
+            font-size: 12px;
+            color: var(--color-text-light);
+            text-align: center;
+            margin-top: 8px;
+        }
+
+        .doctor-approval-text {
+            display: none;
+            background: var(--color-bg);
+            padding: 12px;
+            border-radius: 6px;
+            font-size: 12px;
+            font-family: monospace;
+            margin-top: 8px;
+            word-break: break-all;
+        }
+    </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+    <div class="container">
+        <a href="#" class="nav-logo">Majo Villafaina</a>
+        <ul class="nav-links" id="navLinks">
+            <li><a href="#que-es">Feldenkrais</a></li>
+            <li><a href="#sobre-mi">Sobre m&iacute;</a></li>
+            <li><a href="#clases">Clases</a></li>
+            <li><a href="#individual">Individual</a></li>
+            <li><a href="#faq">FAQ</a></li>
+            <li><a href="#inscripcion" class="btn btn-outline" style="padding: 8px 20px; font-size: 0.85rem;">Inscribirme</a></li>
+        </ul>
+        <button class="nav-toggle" id="navToggle" aria-label="Abrir men&uacute;" aria-expanded="false" aria-controls="navLinks">
+            <span></span><span></span><span></span>
+        </button>
+    </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero" data-variant="A" data-view="hero">
+    <div class="container">
+        <h1>Aprende a moverte <em>sin esfuerzo</em></h1>
+        <p>Clases online del M&eacute;todo Feldenkrais. Mejora tu movilidad, reduce el dolor y descubre una nueva relaci&oacute;n con tu cuerpo &mdash; desde donde est&eacute;s.</p>
+        <a href="#clases" class="btn">Ver clases online</a>
+    </div>
+</section>
+
+<!-- QUE ES FELDENKRAIS -->
+<section class="que-es" id="que-es">
+    <div class="container">
+        <div class="section-title">El M&eacute;todo Feldenkrais</div>
+        <p class="section-subtitle">Una forma de aprender a trav&eacute;s del movimiento que transforma c&oacute;mo te sientes en tu cuerpo.</p>
+        <div class="que-es-grid fade-in">
+            <div class="que-es-text">
+                <h3>No es gimnasia. No es terapia. Es aprendizaje.</h3>
+                <p>El M&eacute;todo Feldenkrais utiliza el movimiento consciente para reorganizar la relaci&oacute;n entre tu cerebro y tu cuerpo. A trav&eacute;s de secuencias guiadas por la voz, exploras movimientos suaves que revelan patrones habituales y abren nuevas posibilidades.</p>
+                <p>No necesitas experiencia previa, ni flexibilidad, ni ropa especial. Solo un espacio tranquilo y disposici&oacute;n a escucharte.</p>
+                <h3>Las clases ATM (Autoconciencia a Trav&eacute;s del Movimiento)</h3>
+                <p>En las sesiones grupales &mdash;llamadas ATM&mdash; sigues instrucciones verbales que te gu&iacute;an por secuencias de movimiento. Cada lecci&oacute;n se centra en una funci&oacute;n concreta: girar, caminar, respirar, alcanzar. Lo &uacute;nico que importa es escuchar y mover.</p>
+            </div>
+            <div class="que-es-visual">
+                <div class="icon-placeholder">&#127793;</div>
+                <blockquote>&laquo;Hacer lo imposible posible, lo posible f&aacute;cil, y lo f&aacute;cil elegante.&raquo;</blockquote>
+                <p style="margin-top: 12px; font-size: 0.9rem; color: var(--color-green);">&mdash; Mosh&eacute; Feldenkrais</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- BENEFICIOS -->
+<section class="beneficios" id="beneficios" data-variant="A" data-view="beneficios">
+    <div class="container">
+        <div class="section-title">Para qui&eacute;n es</div>
+        <p class="section-subtitle">El Feldenkrais es para cualquier persona con un cuerpo. Estos son algunos de los beneficios que experimentan mis alumnos.</p>
+        <div class="beneficios-grid">
+            <div class="beneficio-card fade-in">
+                <div class="beneficio-icon">&#128704;</div>
+                <h3>Dolor cr&oacute;nico</h3>
+                <p>Espalda, cuello, hombros, caderas. Muchos dolores cr&oacute;nicos se alivian cuando aprendes a moverte de forma m&aacute;s organizada.</p>
+            </div>
+            <div class="beneficio-card fade-in">
+                <div class="beneficio-icon">&#128187;</div>
+                <h3>Horas frente a la pantalla</h3>
+                <p>Si pasas muchas horas sentada, estas lecciones deshacen la rigidez acumulada y te devuelven sensaci&oacute;n de espacio interior.</p>
+            </div>
+            <div class="beneficio-card fade-in">
+                <div class="beneficio-icon">&#129336;</div>
+                <h3>Bailarines y artistas</h3>
+                <p>Ampl&iacute;a tu repertorio de movimiento, mejora la coordinaci&oacute;n y descubre eficiencia en gestos que ya conoces.</p>
+            </div>
+            <div class="beneficio-card fade-in">
+                <div class="beneficio-icon">&#129686;</div>
+                <h3>Envejecimiento activo</h3>
+                <p>Mantener la movilidad y el equilibrio es posible a cualquier edad. El Feldenkrais es accesible y respetuoso con tu ritmo.</p>
+            </div>
+            <div class="beneficio-card fade-in">
+                <div class="beneficio-icon">&#128161;</div>
+                <h3>Estr&eacute;s y ansiedad</h3>
+                <p>El movimiento lento y consciente activa el sistema nervioso parasimp&aacute;tico. Muchos alumnos reportan mejor sue&ntilde;o y calma.</p>
+            </div>
+            <div class="beneficio-card fade-in">
+                <div class="beneficio-icon">&#127947;</div>
+                <h3>Deportistas</h3>
+                <p>Mejora tu rendimiento aprendiendo patrones de movimiento m&aacute;s eficientes. Prevenci&oacute;n de lesiones desde la ra&iacute;z.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- MINI CURSO GRATUITO — LEAD MAGNET -->
+<section class="mini-curso" id="mini-curso">
+    <div class="container">
+        <div class="mini-curso-box fade-in">
+            <div class="emoji-big">&#127911;</div>
+            <div class="section-title">5 d&iacute;as de Feldenkrais gratis</div>
+            <p class="section-subtitle" style="margin-bottom: 16px;">Recibe una micro-lecci&oacute;n de 10 minutos en tu email durante 5 d&iacute;as. Sin compromiso, sin spam. Solo t&uacute;, tu cuerpo y mi voz.</p>
+            <div class="mini-curso-form">
+                <input type="email" id="leadEmail" placeholder="Tu email" required>
+                <button class="btn" onclick="handleLeadMagnet()" type="button">Quiero probarlo</button>
+            </div>
+            <p class="form-error" id="leadEmailError" style="text-align: center;">Introduce un email v&aacute;lido</p>
+            <p style="font-size: 0.82rem; color: var(--color-text-light); margin-top: 12px;">Solo necesitas un email. Te escribo ma&ntilde;ana con la primera lecci&oacute;n.</p>
+        </div>
+    </div>
+</section>
+
+<!-- SOBRE MI -->
+<section class="sobre-mi" id="sobre-mi">
+    <div class="container">
+        <div class="section-title">Sobre m&iacute;</div>
+        <div class="sobre-mi-grid fade-in">
+            <div class="sobre-mi-foto">
+                <!-- REEMPLAZAR: a&ntilde;adir foto de Majo aqu&iacute; -->
+                <p style="padding: 20px; text-align: center;">Foto de Majo<br><small>(a&ntilde;adir imagen)</small></p>
+            </div>
+            <div class="sobre-mi-bio">
+                <h3>Majo Villafaina</h3>
+                <p>Soy bailarina, investigadora del movimiento y profesora del M&eacute;todo Feldenkrais. Vivo en Barcelona.</p>
+                <p>Despu&eacute;s de casi 10 a&ntilde;os coordinando producci&oacute;n editorial para el mercado europeo, en 2016 di el salto a la danza y al trabajo corporal. Me form&eacute; con maestros independientes cuyo trabajo me interpelaba, y paralelamente me form&eacute; en el M&eacute;todo Feldenkrais.</p>
+                <p>He bailado en el Mercat de les Flors, he recibido becas de Barcelona Crea y la Generalitat, y colaboro con la Fundaci&oacute;n Brossa. Actualmente ense&ntilde;o Feldenkrais y danza en varios centros de Barcelona y online.</p>
+                <p>Mi manera de ense&ntilde;ar combina la precisi&oacute;n del m&eacute;todo con la sensibilidad de la danza. Creo que cada persona puede encontrar m&aacute;s libertad en su movimiento &mdash; y que eso cambia c&oacute;mo habitas tu vida.</p>
+                <div class="credenciales">
+                    <span class="credencial">Feldenkrais ATM &amp; IF</span>
+                    <span class="credencial">Danza contempor&aacute;nea</span>
+                    <span class="credencial">Contact Improvisaci&oacute;n</span>
+                    <span class="credencial">Mercat de les Flors</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- CLASES ONLINE -->
+<section class="clases-online" id="clases" data-variant="A" data-view="clases-online">
+    <div class="container">
+        <div class="section-title">Clases online de Feldenkrais</div>
+        <p class="section-subtitle">Sesiones en directo por videoconferencia. Recibes la grabaci&oacute;n en audio para repetir cuando quieras.</p>
+
+        <div class="clases-grid fade-in">
+            <div class="clase-card">
+                <span class="badge popular">M&aacute;s popular</span>
+                <h3>Ciclo mensual</h3>
+                <p class="descripcion">4 sesiones al mes de ATM (Autoconciencia a Trav&eacute;s del Movimiento). Cada sesi&oacute;n se centra en una zona o funci&oacute;n del cuerpo diferente.</p>
+                <div class="clase-detalle">
+                    <span>Horario</span>
+                    <span>Martes 18:30 &ndash; 19:30h</span>
+                </div>
+                <div class="clase-detalle">
+                    <span>Plataforma</span>
+                    <span>Google Meet</span>
+                </div>
+                <div class="clase-detalle">
+                    <span>Grabaci&oacute;n</span>
+                    <span>Audio disponible antes del viernes</span>
+                </div>
+                <div class="clase-detalle">
+                    <span>Grupo</span>
+                    <span>M&aacute;ximo 15 personas</span>
+                </div>
+            </div>
+
+            <div class="clase-card">
+                <span class="badge">Nuevo</span>
+                <h3>Clase suelta de prueba</h3>
+                <p class="descripcion">Una sesi&oacute;n individual para experimentar el m&eacute;todo antes de comprometerte con un ciclo. Sin compromiso.</p>
+                <div class="clase-detalle">
+                    <span>Duraci&oacute;n</span>
+                    <span>60 minutos</span>
+                </div>
+                <div class="clase-detalle">
+                    <span>Precio</span>
+                    <span>12 &euro;</span>
+                </div>
+                <div class="clase-detalle">
+                    <span>Incluye</span>
+                    <span>Audio de la sesi&oacute;n</span>
+                </div>
+                <div class="clase-detalle">
+                    <span>Requisitos</span>
+                    <span>Ninguno</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="precio-range">
+            <span class="precio">31 &ndash; 47 &euro;</span>
+            <span class="periodo"> / mes (4 sesiones)</span>
+        </div>
+        <p class="precio-nota">El precio es variable seg&uacute;n tu situaci&oacute;n econ&oacute;mica. Creo en el acceso al movimiento consciente &mdash; si el precio es un obst&aacute;culo, escr&iacute;beme.</p>
+
+        <div style="text-align: center;">
+            <a href="#inscripcion" class="btn">Quiero apuntarme</a>
+        </div>
+    </div>
+</section>
+
+<!-- COMO FUNCIONA -->
+<section class="como-funciona">
+    <div class="container">
+        <div class="section-title">C&oacute;mo funciona</div>
+        <p class="section-subtitle">En 4 pasos sencillos est&aacute;s dentro.</p>
+        <div class="como-funciona-grid fade-in">
+            <div class="paso">
+                <div class="paso-numero">1</div>
+                <h3>Te inscribes</h3>
+                <p>Rellenas el formulario de inscripci&oacute;n con tus datos b&aacute;sicos.</p>
+            </div>
+            <div class="paso">
+                <div class="paso-numero">2</div>
+                <h3>Recibes el enlace</h3>
+                <p>Te env&iacute;o por email el acceso a Google Meet antes de la primera clase.</p>
+            </div>
+            <div class="paso">
+                <div class="paso-numero">3</div>
+                <h3>Participas en directo</h3>
+                <p>Te tumbas en una esterilla, escuchas mi voz y mueves a tu ritmo.</p>
+            </div>
+            <div class="paso">
+                <div class="paso-numero">4</div>
+                <h3>Repites con el audio</h3>
+                <p>Antes del viernes recibes la grabaci&oacute;n para practicar cuando quieras.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- TESTIMONIOS -->
+<section class="testimonios" id="testimonios" data-variant="A" data-view="testimonios">
+    <div class="container">
+        <div class="section-title">Lo que dicen mis alumnos</div>
+        <p class="section-subtitle">Experiencias reales de personas que han pasado por las clases.</p>
+        <div class="testimonios-grid fade-in">
+            <div class="testimonio">
+                <div class="estrellas">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                <p>&laquo;Llevaba a&ntilde;os con dolor de espalda cr&oacute;nico. Despu&eacute;s de dos meses con Majo, no solo mejor&oacute; el dolor sino que descubr&iacute; movimientos que no sab&iacute;a que pod&iacute;a hacer.&raquo;</p>
+                <div class="autor">Alumna presencial</div>
+                <div class="detalle">Barcelona &mdash; 2 a&ntilde;os de clases</div>
+            </div>
+            <div class="testimonio">
+                <div class="estrellas">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                <p>&laquo;Las clases online me permiten seguir practicando desde casa. El audio de las sesiones es un regalo &mdash; lo repito varias veces a la semana.&raquo;</p>
+                <div class="autor">Alumna online</div>
+                <div class="detalle">Ciclo febrero-marzo 2026</div>
+            </div>
+            <div class="testimonio">
+                <div class="estrellas">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                <p>&laquo;No sab&iacute;a qu&eacute; era el Feldenkrais. Fui a una clase suelta un s&aacute;bado por curiosidad y ahora no puedo dejarlo. La manera de ense&ntilde;ar de Majo es muy especial.&raquo;</p>
+                <div class="autor">Alumno del centro c&iacute;vico</div>
+                <div class="detalle">Sagrada Familia &mdash; 1 a&ntilde;o</div>
+            </div>
+        </div>
+        <p style="text-align: center; margin-top: 32px; color: var(--color-text-light); font-size: 0.9rem; font-style: italic;">
+            * Majo: reemplaza estos testimonios con citas reales de tus alumnos cuando las tengas.
+        </p>
+    </div>
+</section>
+
+<!-- SESIONES INDIVIDUALES IF -->
+<section class="individual" id="individual">
+    <div class="container">
+        <div class="section-title">Sesi&oacute;n individual</div>
+        <p class="section-subtitle">Integraci&oacute;n Funcional (IF) &mdash; trabajo personalizado, uno a uno, en mi espacio de Barcelona.</p>
+        <div class="individual-grid fade-in">
+            <div class="individual-info">
+                <h3>&iquest;Qu&eacute; es una sesi&oacute;n individual?</h3>
+                <p>La Integraci&oacute;n Funcional es la aplicaci&oacute;n individual del M&eacute;todo Feldenkrais. A diferencia de las clases grupales (ATM), aqu&iacute; soy yo quien te gu&iacute;a con las manos, adapt&aacute;ndome completamente a tu cuerpo y tus necesidades.</p>
+                <p>Es ideal si tienes una dolencia espec&iacute;fica, quieres profundizar en tu proceso o simplemente prefieres una atenci&oacute;n totalmente personalizada.</p>
+                <ul>
+                    <li>Trabajo manual suave y respetuoso</li>
+                    <li>Adaptada a tu cuerpo y tu momento</li>
+                    <li>Ideal para dolor cr&oacute;nico, recuperaci&oacute;n de lesiones o exploraci&oacute;n profunda</li>
+                    <li>Complementa las clases grupales</li>
+                    <li>En mi espacio en Barcelona</li>
+                </ul>
+            </div>
+            <div class="individual-precio">
+                <p style="color: var(--color-text-light); margin-bottom: 8px; text-transform: uppercase; font-size: 0.85rem; letter-spacing: 0.05em;">Sesi&oacute;n individual IF</p>
+                <div class="precio-grande">50 &ndash; 70 &euro;</div>
+                <p class="precio-sub">Por sesi&oacute;n &middot; ~60 minutos</p>
+                <p style="font-size: 0.9rem; color: var(--color-text-light); margin-bottom: 24px;">Precio variable seg&uacute;n tu situaci&oacute;n.</p>
+                <a href="mailto:majovillama@gmail.com?subject=Sesion%20individual%20IF" class="btn">Pedir cita</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- REFERIDOS -->
+<section class="referidos">
+    <div class="container">
+        <div class="section-title">Trae a una amiga</div>
+        <p>Si las clases te est&aacute;n ayudando, comp&aacute;rtelo. Tu amiga y t&uacute; recib&iacute;s una clase gratis.</p>
+        <div class="referidos-pasos">
+            <div class="referido-paso">
+                <div class="num">1</div>
+                <p>Invita a alguien<br>que le pueda interesar</p>
+            </div>
+            <div class="referido-paso">
+                <div class="num">2</div>
+                <p>Tu amiga se inscribe<br>mencionando tu nombre</p>
+            </div>
+            <div class="referido-paso">
+                <div class="num">3</div>
+                <p>Las dos disfrut&aacute;is<br>de una clase gratis</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- REGALA FELDENKRAIS -->
+<section id="regalo" style="background: var(--color-bg); padding: 80px 0;">
+    <div class="container">
+        <div class="section-title">Regala Feldenkrais</div>
+        <p class="section-subtitle">Un regalo diferente para alguien que quieres. Movimiento, calma y autoconocimiento.</p>
+        <div class="regalo-card fade-in">
+            <p style="color: var(--color-text-light); margin-bottom: 16px;">Elige el formato que prefieras. Recibir&aacute;s una tarjeta digital lista para regalar.</p>
+            <div class="regalo-opciones">
+                <div class="regalo-opcion">
+                    <div class="regalo-precio">12 &euro;</div>
+                    <div class="regalo-desc">1 clase suelta</div>
+                </div>
+                <div class="regalo-opcion">
+                    <div class="regalo-precio">40 &euro;</div>
+                    <div class="regalo-desc">1 mes completo</div>
+                </div>
+                <div class="regalo-opcion">
+                    <div class="regalo-precio">100 &euro;</div>
+                    <div class="regalo-desc">3 meses</div>
+                </div>
+            </div>
+            <a href="mailto:majovillama@gmail.com?subject=Quiero%20regalar%20Feldenkrais" class="btn btn-outline">Quiero regalar</a>
+        </div>
+    </div>
+</section>
+
+<!-- PODCAST -->
+<section class="podcast" id="podcast">
+    <div class="container">
+        <div class="section-title">Esc&uacute;chame donde quieras</div>
+        <p class="section-subtitle">Micro-lecciones de Feldenkrais en formato podcast. 5 minutos para reconectar con tu cuerpo.</p>
+        <div class="podcast-box fade-in">
+            <div class="podcast-icon">&#127911;</div>
+            <div class="podcast-text">
+                <h3>Feldenkrais en 5 minutos</h3>
+                <p>Lecciones cortas y guiadas que puedes escuchar en cualquier momento. Perfectas para una pausa en el trabajo, antes de dormir o al despertar.</p>
+                <div class="podcast-links">
+                    <span class="podcast-link" style="opacity: 0.5; cursor: default;" title="Pr&oacute;ximamente">Spotify (pronto)</span>
+                    <span class="podcast-link" style="opacity: 0.5; cursor: default;" title="Pr&oacute;ximamente">Apple Podcasts (pronto)</span>
+                    <span class="podcast-link" style="opacity: 0.5; cursor: default;" title="Pr&oacute;ximamente">YouTube (pronto)</span>
+                </div>
+                <p style="font-size: 0.82rem; margin-top: 8px; font-style: italic;">* Majo: a&ntilde;adir links reales cuando est&eacute; publicado.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- CLASE GRATUITA -->
+<section class="clase-gratuita">
+    <div class="container">
+        <div class="section-title">Prueba una clase gratuita</div>
+        <p class="section-subtitle">Una vez al mes abro una sesi&oacute;n online gratuita para que puedas experimentar el m&eacute;todo sin ning&uacute;n compromiso.</p>
+        <a href="#inscripcion" class="btn">Reservar mi plaza gratuita</a>
+    </div>
+</section>
+
+<!-- FORMULARIO DE INSCRIPCION -->
+<section class="formulario" id="inscripcion">
+    <div class="container">
+        <div class="section-title">Inscripci&oacute;n</div>
+        <p class="section-subtitle">Rellena este formulario y me pondr&eacute; en contacto contigo con los detalles para empezar.</p>
+
+        <div class="form-wrapper">
+            <form id="inscripcionForm" action="#" method="POST" onsubmit="handleSubmit(event)">
+
+                <div class="form-section-title">Datos personales</div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="nombre">Nombre *</label>
+                        <input type="text" id="nombre" name="nombre" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="apellidos">Apellidos *</label>
+                        <input type="text" id="apellidos" name="apellidos" required>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Email *</label>
+                    <input type="email" id="email" name="email" required>
+                    <p class="form-error" id="emailError">Introduce un email v&aacute;lido (ej: nombre@correo.com)</p>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="telefono">Tel&eacute;fono</label>
+                        <p class="hint">Opcional</p>
+                        <input type="tel" id="telefono" name="telefono">
+                    </div>
+                    <div class="form-group">
+                        <label for="nacimiento">Fecha de nacimiento</label>
+                        <input type="date" id="nacimiento" name="nacimiento">
+                    </div>
+                </div>
+
+                <div class="form-section-title">Sobre tu cuerpo</div>
+                <p class="hint" style="margin-bottom: 16px;">Esta informaci&oacute;n me ayuda a adaptar las sesiones. Toda respuesta es v&aacute;lida.</p>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="peso">Peso actual (kg)</label>
+                        <input type="number" id="peso" name="peso" placeholder="Ej: 65">
+                    </div>
+                    <div class="form-group">
+                        <label for="altura">Altura (cm)</label>
+                        <input type="number" id="altura" name="altura" placeholder="Ej: 170">
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="horas_sentada">Horas al d&iacute;a sentada (aprox.)</label>
+                        <select id="horas_sentada" name="horas_sentada">
+                            <option value="">Selecciona</option>
+                            <option value="0-2">Menos de 2 horas</option>
+                            <option value="2-4">2 a 4 horas</option>
+                            <option value="4-6">4 a 6 horas</option>
+                            <option value="6-8">6 a 8 horas</option>
+                            <option value="8+">M&aacute;s de 8 horas</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="horas_pantalla">Horas al d&iacute;a frente a pantalla (aprox.)</label>
+                        <select id="horas_pantalla" name="horas_pantalla">
+                            <option value="">Selecciona</option>
+                            <option value="0-2">Menos de 2 horas</option>
+                            <option value="2-4">2 a 4 horas</option>
+                            <option value="4-6">4 a 6 horas</option>
+                            <option value="6-8">6 a 8 horas</option>
+                            <option value="8+">M&aacute;s de 8 horas</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="profesion">Profesi&oacute;n</label>
+                    <p class="hint">Opcional &mdash; me ayuda a entender tu d&iacute;a a d&iacute;a corporal</p>
+                    <input type="text" id="profesion" name="profesion">
+                </div>
+
+                <div class="form-group">
+                    <label for="enfermedades">Enfermedades o condiciones destacables</label>
+                    <p class="hint">Lesiones, cirug&iacute;as recientes, embarazo, condiciones cr&oacute;nicas...</p>
+                    <textarea id="enfermedades" name="enfermedades" rows="3"></textarea>
+                </div>
+
+                <div class="form-section-title">Tu motivaci&oacute;n</div>
+
+                <div class="form-group">
+                    <label for="mejorar">&iquest;Qu&eacute; te gustar&iacute;a mejorar de tu estado actual? *</label>
+                    <textarea id="mejorar" name="mejorar" rows="3" required placeholder="Ej: Tengo dolor de espalda, quiero moverme mejor, busco reducir el estr&eacute;s..."></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="habilidades">Habilidades personales</label>
+                    <p class="hint">&iquest;Practicas deporte, danza, yoga u otra disciplina corporal?</p>
+                    <textarea id="habilidades" name="habilidades" rows="2"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="como_conociste">&iquest;C&oacute;mo me has conocido?</label>
+                    <select id="como_conociste" name="como_conociste">
+                        <option value="">Selecciona</option>
+                        <option value="clase_presencial">Fui a una clase presencial tuya</option>
+                        <option value="recomendacion">Recomendaci&oacute;n de alguien</option>
+                        <option value="instagram">Instagram</option>
+                        <option value="google">B&uacute;squeda en Google</option>
+                        <option value="otro">Otro</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>Me interesa: *</label>
+                    <div style="display: flex; flex-direction: column; gap: 8px; margin-top: 8px;">
+                        <label style="font-weight: normal; display: flex; align-items: center; gap: 8px; cursor: pointer;">
+                            <input type="checkbox" name="interes" value="ciclo_online"> Ciclo mensual online (4 sesiones)
+                        </label>
+                        <label style="font-weight: normal; display: flex; align-items: center; gap: 8px; cursor: pointer;">
+                            <input type="checkbox" name="interes" value="clase_suelta"> Clase suelta de prueba
+                        </label>
+                        <label style="font-weight: normal; display: flex; align-items: center; gap: 8px; cursor: pointer;">
+                            <input type="checkbox" name="interes" value="clase_gratuita"> Clase gratuita mensual
+                        </label>
+                        <label style="font-weight: normal; display: flex; align-items: center; gap: 8px; cursor: pointer;">
+                            <input type="checkbox" name="interes" value="intensivo"> Intensivos presenciales (fines de semana)
+                        </label>
+                    </div>
+                    <p class="form-error" id="interesError">Selecciona al menos una opci&oacute;n</p>
+                </div>
+
+                <div class="form-submit">
+                    <button type="submit" class="btn">Enviar inscripci&oacute;n</button>
+                </div>
+
+                <p class="form-legal">Tus datos se usan exclusivamente para gestionar tu inscripci&oacute;n y comunicarme contigo sobre las clases. No comparto tu informaci&oacute;n con terceros.</p>
+            </form>
+
+            <!-- Mensaje de confirmaci&oacute;n -->
+            <div id="formSuccess" style="display: none; text-align: center; padding: 40px 0;">
+                <div style="font-size: 3rem; margin-bottom: 16px;">&#10003;</div>
+                <h3 style="font-family: var(--font-heading); margin-bottom: 12px;">Inscripci&oacute;n recibida</h3>
+                <p style="color: var(--color-text-light);">Gracias por tu inter&eacute;s. Se ha abierto tu cliente de correo para enviar los datos.</p>
+                <p style="color: var(--color-text-light); margin-top: 12px; font-size: 0.9rem;">Si no se ha abierto el correo autom&aacute;ticamente, escr&iacute;beme directamente a <a href="mailto:majovillama@gmail.com"><strong>majovillama@gmail.com</strong></a> indicando tu nombre y que quieres inscribirte.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- CLASES PRESENCIALES -->
+<section class="presencial" id="presencial">
+    <div class="container">
+        <div class="section-title">Clases presenciales en Barcelona</div>
+        <p class="section-subtitle">Si est&aacute;s en Barcelona, tambi&eacute;n puedes venir a mis clases regulares.</p>
+        <div class="presencial-grid fade-in">
+            <div class="presencial-card">
+                <h3>Casal de Barri</h3>
+                <p>Feldenkrais ATM</p>
+                <p class="horario">Martes 20:00 &ndash; 21:00h</p>
+                <p>Grupo consolidado de 15 personas.</p>
+            </div>
+            <div class="presencial-card">
+                <h3>CC Sagrada Familia</h3>
+                <p>Danza + Feldenkrais ATM</p>
+                <p class="horario">Mi&eacute;rcoles 19:00 &ndash; 21:45h</p>
+                <p>Danza (19-20:30) y Feldenkrais (20:30-21:45).</p>
+            </div>
+            <div class="presencial-card">
+                <h3>CC Barceloneta</h3>
+                <p>Feldenkrais ATM</p>
+                <p class="horario">Jueves 18:00 &ndash; 19:15h</p>
+                <p>14 plazas. Tambi&eacute;n clases sueltas los s&aacute;bados.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- FAQ -->
+<section id="faq">
+    <div class="container">
+        <div class="section-title">Preguntas frecuentes</div>
+        <div class="faq-list">
+            <div class="faq-item">
+                <button class="faq-question" aria-expanded="false">&iquest;Necesito experiencia previa?</button>
+                <div class="faq-answer">
+                    <p>No. El M&eacute;todo Feldenkrais es accesible para cualquier persona, independientemente de su edad, condici&oacute;n f&iacute;sica o experiencia con el movimiento. Las lecciones se adaptan a tu ritmo.</p>
+                </div>
+            </div>
+            <div class="faq-item">
+                <button class="faq-question" aria-expanded="false">&iquest;Qu&eacute; necesito para la clase online?</button>
+                <div class="faq-answer">
+                    <p>Un dispositivo con c&aacute;mara y micr&oacute;fono (ordenador, m&oacute;vil o tablet), conexi&oacute;n a internet, una esterilla o manta en el suelo, y ropa c&oacute;moda. La c&aacute;mara es opcional &mdash; lo importante es que t&uacute; escuches.</p>
+                </div>
+            </div>
+            <div class="faq-item">
+                <button class="faq-question" aria-expanded="false">&iquest;Puedo ver la grabaci&oacute;n si no puedo asistir en directo?</button>
+                <div class="faq-answer">
+                    <p>S&iacute;. Despu&eacute;s de cada sesi&oacute;n subo el audio para que puedas repetir la lecci&oacute;n cuando quieras. El formato audio es ideal para el Feldenkrais porque lo &uacute;nico que necesitas es escuchar las instrucciones.</p>
+                </div>
+            </div>
+            <div class="faq-item">
+                <button class="faq-question" aria-expanded="false">&iquest;Por qu&eacute; el precio es variable?</button>
+                <div class="faq-answer">
+                    <p>Creo que el acceso al movimiento consciente no deber&iacute;a depender de tu situaci&oacute;n econ&oacute;mica. Por eso ofrezco una horquilla de precio (31&ndash;47&euro;/mes). T&uacute; eliges lo que puedas aportar. Si el precio es un obst&aacute;culo real, escr&iacute;beme y encontramos una soluci&oacute;n.</p>
+                </div>
+            </div>
+            <div class="faq-item">
+                <button class="faq-question" aria-expanded="false">&iquest;Puedo probar antes de comprometerme?</button>
+                <div class="faq-answer">
+                    <p>Por supuesto. Puedes venir a una clase suelta por 12&euro;, o apuntarte a la clase gratuita mensual abierta. Sin ning&uacute;n compromiso.</p>
+                </div>
+            </div>
+            <div class="faq-item">
+                <button class="faq-question" aria-expanded="false">&iquest;En qu&eacute; se diferencia del yoga o el pilates?</button>
+                <div class="faq-answer">
+                    <p>El Feldenkrais no busca posturas ni repeticiones. Es un proceso de aprendizaje: a trav&eacute;s de movimientos lentos y exploratorios, tu sistema nervioso descubre formas m&aacute;s eficientes de organizar el movimiento. No hay esfuerzo, no hay &laquo;hacerlo bien&raquo;. Hay explorar y sentir.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+    <div class="container">
+        <div class="footer-grid">
+            <div>
+                <h4>Majo Villafaina</h4>
+                <p>Profesora del M&eacute;todo Feldenkrais, bailarina e investigadora del movimiento. Barcelona.</p>
+                <p style="margin-top: 12px;">
+                    <a href="mailto:majovillama@gmail.com">majovillama@gmail.com</a>
+                </p>
+            </div>
+            <div>
+                <h4>Clases</h4>
+                <p><a href="#clases">Online &mdash; Feldenkrais</a></p>
+                <p><a href="#individual">Sesi&oacute;n individual IF</a></p>
+                <p><a href="#presencial">Presencial &mdash; Barcelona</a></p>
+                <p><a href="#regalo">Regala Feldenkrais</a></p>
+                <p><a href="#inscripcion">Inscribirme</a></p>
+            </div>
+            <div>
+                <h4>S&iacute;gueme</h4>
+                <p><span style="opacity: 0.5;">Instagram (pronto)</span></p>
+                <p><span style="opacity: 0.5;">YouTube (pronto)</span></p>
+                <p><a href="#podcast">Podcast</a></p>
+                <p><a href="#mini-curso">Mini-curso gratuito</a></p>
+                <!-- Majo: a&ntilde;adir links reales a Instagram y YouTube -->
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Majo Villafaina. Todos los derechos reservados.</p>
+        </div>
+    </div>
+</footer>
+
+<script>
+    // Mobile nav toggle
+    const navToggle = document.getElementById('navToggle');
+    const navLinks = document.getElementById('navLinks');
+    navToggle.addEventListener('click', () => {
+        navLinks.classList.toggle('active');
+        const expanded = navLinks.classList.contains('active');
+        navToggle.setAttribute('aria-expanded', expanded);
+    });
+
+    // Close mobile nav on link click
+    navLinks.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => {
+            navLinks.classList.remove('active');
+        });
+    });
+
+    // FAQ accordion
+    document.querySelectorAll('.faq-question').forEach(btn => {
+        btn.addEventListener('click', () => {
+            const item = btn.parentElement;
+            const wasActive = item.classList.contains('active');
+            document.querySelectorAll('.faq-item').forEach(i => {
+                i.classList.remove('active');
+                i.querySelector('.faq-question').setAttribute('aria-expanded', 'false');
+            });
+            if (!wasActive) {
+                item.classList.add('active');
+                btn.setAttribute('aria-expanded', 'true');
+            }
+        });
+    });
+
+    // Fade-in on scroll
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+            }
+        });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+    // Sanitize text for use in mailto URLs — strip HTML tags and limit length
+    function sanitize(str, maxLen) {
+        if (!str) return '';
+        var clean = String(str).replace(/<[^>]*>/g, '').replace(/[\r\n]+/g, ' ').trim();
+        if (maxLen && clean.length > maxLen) clean = clean.substring(0, maxLen);
+        return clean;
+    }
+
+    // Form submit handler
+    function handleSubmit(e) {
+        e.preventDefault();
+
+        var form = document.getElementById('inscripcionForm');
+
+        // Limpiar errores previos
+        form.querySelectorAll('.form-error').forEach(function(el) { el.classList.remove('visible'); });
+        form.querySelectorAll('input, select, textarea').forEach(function(el) { el.style.borderColor = ''; });
+
+        var hasError = false;
+
+        // Validar email con regex antes de procesar
+        var emailField = form.querySelector('#email');
+        var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(emailField.value.trim())) {
+            emailField.style.borderColor = '#c44';
+            document.getElementById('emailError').classList.add('visible');
+            if (!hasError) emailField.focus();
+            hasError = true;
+        }
+
+        // Validar que al menos un checkbox de interés esté marcado
+        var interesChecks = form.querySelectorAll('input[name="interes"]:checked');
+        if (interesChecks.length === 0) {
+            document.getElementById('interesError').classList.add('visible');
+            hasError = true;
+        }
+
+        if (hasError) return;
+
+        var formData = new FormData(form);
+        var data = {};
+
+        formData.forEach(function(value, key) {
+            if (data[key]) {
+                if (Array.isArray(data[key])) {
+                    data[key].push(value);
+                } else {
+                    data[key] = [data[key], value];
+                }
+            } else {
+                data[key] = value;
+            }
+        });
+
+        // Guardar en localStorage y mostrar confirmación
+        var inscripciones = JSON.parse(localStorage.getItem('majo_inscripciones') || '[]');
+        data.fecha_inscripcion = new Date().toISOString();
+        inscripciones.push(data);
+        localStorage.setItem('majo_inscripciones', JSON.stringify(inscripciones));
+
+        // Mostrar confirmación
+        form.style.display = 'none';
+        document.getElementById('formSuccess').style.display = 'block';
+
+        // Preparar mailto con datos sanitizados
+        var nombre = sanitize(data.nombre, 100);
+        var apellidos = sanitize(data.apellidos, 100);
+        var subject = encodeURIComponent('Nueva inscripcion: ' + nombre + ' ' + apellidos);
+        var body = encodeURIComponent(
+            'Nueva inscripcion desde la web:\n\n' +
+            'Nombre: ' + nombre + ' ' + apellidos + '\n' +
+            'Email: ' + sanitize(data.email, 200) + '\n' +
+            'Telefono: ' + (sanitize(data.telefono, 30) || 'No indicado') + '\n' +
+            'Nacimiento: ' + (sanitize(data.nacimiento, 20) || 'No indicado') + '\n' +
+            'Profesion: ' + (sanitize(data.profesion, 200) || 'No indicado') + '\n' +
+            'Horas sentada: ' + (sanitize(data.horas_sentada, 20) || 'No indicado') + '\n' +
+            'Horas pantalla: ' + (sanitize(data.horas_pantalla, 20) || 'No indicado') + '\n' +
+            'Condiciones: ' + (sanitize(data.enfermedades, 500) || 'No indicado') + '\n' +
+            'Quiere mejorar: ' + (sanitize(data.mejorar, 500) || '') + '\n' +
+            'Habilidades: ' + (sanitize(data.habilidades, 300) || 'No indicado') + '\n' +
+            'Como me conocio: ' + (sanitize(data.como_conociste, 100) || 'No indicado') + '\n' +
+            'Interesado en: ' + (Array.isArray(data.interes) ? data.interes.map(function(v) { return sanitize(v, 50); }).join(', ') : (sanitize(data.interes, 50) || 'No indicado')) + '\n'
+        );
+
+        // Abrir mailto — window.open con fallback a location.href
+        var mailtoUrl = 'mailto:majovillama@gmail.com?subject=' + subject + '&body=' + body;
+        var w = window.open(mailtoUrl, '_blank');
+        if (!w) window.location.href = mailtoUrl;
+    }
+
+    // Lead magnet — mini-curso 5 dias
+    function handleLeadMagnet() {
+        var emailInput = document.getElementById('leadEmail');
+        var email = sanitize(emailInput.value, 200);
+        var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        document.getElementById('leadEmailError').classList.remove('visible');
+        if (!email || !emailRegex.test(email)) {
+            emailInput.style.borderColor = '#c44';
+            document.getElementById('leadEmailError').classList.add('visible');
+            emailInput.focus();
+            return;
+        }
+        emailInput.style.borderColor = '';
+
+        // Guardar en localStorage
+        var leads = JSON.parse(localStorage.getItem('majo_leads') || '[]');
+        leads.push({ email: email, fecha: new Date().toISOString(), tipo: 'mini-curso-5-dias' });
+        localStorage.setItem('majo_leads', JSON.stringify(leads));
+
+        // Ocultar formulario y mostrar confirmación sin destruir el DOM
+        var formElements = emailInput.closest('.mini-curso-box').querySelector('.mini-curso-form');
+        var hint = emailInput.closest('.mini-curso-box').querySelector('.mini-curso-form + p');
+        if (formElements) formElements.style.display = 'none';
+        if (hint) hint.style.display = 'none';
+
+        var confirmDiv = document.createElement('div');
+        confirmDiv.style.marginTop = '24px';
+
+        var confirmP1 = document.createElement('p');
+        confirmP1.style.cssText = 'color: var(--color-green); font-size: 1.1rem; font-weight: 600;';
+        confirmP1.textContent = '\u2713 Te he apuntado';
+
+        var confirmP2 = document.createElement('p');
+        confirmP2.style.cssText = 'color: var(--color-text-light); margin-top: 8px;';
+        confirmP2.textContent = 'Ma\u00f1ana recibir\u00e1s la primera micro-lecci\u00f3n en ';
+        var emailStrong = document.createElement('strong');
+        emailStrong.textContent = email;
+        confirmP2.appendChild(emailStrong);
+        confirmP2.appendChild(document.createTextNode('.'));
+
+        confirmDiv.appendChild(confirmP1);
+        confirmDiv.appendChild(confirmP2);
+        emailInput.closest('.mini-curso-box').appendChild(confirmDiv);
+
+        // Notificación a Majo: los leads quedan en localStorage.
+        // El iframe mailto se eliminó porque abría el cliente de email en algunos navegadores.
+    }
+</script>
+
+<!-- DOCTOR FEEDBACK WIDGET -->
+<div class="doctor-widget" id="doctorWidget">
+    <button class="doctor-widget-toggle" id="doctorToggle" title="Feedback de dise&ntilde;o">&#9881;</button>
+    <div class="doctor-widget-panel" id="doctorPanel">
+        <h4>Variante de dise&ntilde;o</h4>
+        <div class="doctor-variant-btns">
+            <button class="doctor-variant-btn active" onclick="setVariant('A')">A</button>
+            <button class="doctor-variant-btn" onclick="setVariant('B')">B</button>
+            <button class="doctor-variant-btn" onclick="setVariant('C')">C</button>
+        </div>
+        <p style="font-size: 12px; color: var(--color-text-light); margin-bottom: 12px;">
+            <strong>A</strong> = conservadora &middot; <strong>B</strong> = moderna &middot; <strong>C</strong> = minimalista
+        </p>
+        <div class="doctor-rating">
+            <button onclick="setRating('like')" id="ratingLike" title="Me gusta">&#128077;</button>
+            <button onclick="setRating('dislike')" id="ratingDislike" title="No me gusta">&#128078;</button>
+        </div>
+        <textarea class="doctor-notes" id="doctorNotes" placeholder="Notas (ej: &laquo;quiero el bot&oacute;n m&aacute;s grande&raquo;)" oninput="saveFeedbackState()"></textarea>
+        <button class="doctor-approve-btn" onclick="approveVariant()">Aprobar esta versi&oacute;n</button>
+        <div class="doctor-approval-text" id="doctorApprovalText"></div>
+        <p class="doctor-progress" id="doctorProgress">0 de 4 vistas aprobadas</p>
+    </div>
+</div>
+
+<script>
+    // Doctor UI Feedback Widget
+    (function() {
+        var STORAGE_KEY = 'doctor-ui-feedback';
+        var views = ['hero', 'beneficios', 'testimonios', 'clases-online'];
+
+        var state = JSON.parse(localStorage.getItem(STORAGE_KEY) || 'null') || {
+            activeVariant: 'A',
+            feedback: {}
+        };
+
+        views.forEach(function(v) {
+            if (!state.feedback[v]) {
+                state.feedback[v] = { variant: 'A', rating: null, notes: '' };
+            }
+        });
+
+        function save() {
+            localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+        }
+
+        function applyVariant(variant) {
+            document.querySelectorAll('[data-view]').forEach(function(el) {
+                el.setAttribute('data-variant', variant);
+            });
+        }
+
+        function updateUI() {
+            document.querySelectorAll('.doctor-variant-btn').forEach(function(btn) {
+                btn.classList.toggle('active', btn.textContent.trim() === state.activeVariant);
+            });
+
+            document.getElementById('ratingLike').classList.remove('active-like');
+            document.getElementById('ratingDislike').classList.remove('active-dislike');
+
+            var currentView = views[0];
+            var fb = state.feedback[currentView];
+            if (fb) {
+                if (fb.rating === 'like') document.getElementById('ratingLike').classList.add('active-like');
+                if (fb.rating === 'dislike') document.getElementById('ratingDislike').classList.add('active-dislike');
+                document.getElementById('doctorNotes').value = fb.notes || '';
+            }
+
+            var approved = 0;
+            views.forEach(function(v) {
+                if (state.feedback[v] && state.feedback[v].approved) approved++;
+            });
+            document.getElementById('doctorProgress').textContent = approved + ' de ' + views.length + ' vistas aprobadas';
+        }
+
+        window.setVariant = function(variant) {
+            state.activeVariant = variant;
+            views.forEach(function(v) {
+                state.feedback[v].variant = variant;
+            });
+            applyVariant(variant);
+            save();
+            updateUI();
+        };
+
+        window.setRating = function(rating) {
+            views.forEach(function(v) {
+                state.feedback[v].rating = rating;
+            });
+            save();
+            updateUI();
+        };
+
+        window.saveFeedbackState = function() {
+            var notes = document.getElementById('doctorNotes').value;
+            views.forEach(function(v) {
+                state.feedback[v].notes = notes;
+            });
+            save();
+        };
+
+        window.approveVariant = function() {
+            var lines = [];
+            views.forEach(function(v) {
+                var fb = state.feedback[v];
+                fb.approved = true;
+                lines.push('APROBACION: vista=' + v + ', variante=' + state.activeVariant + ', notas="' + (fb.notes || '') + '"');
+            });
+            save();
+            updateUI();
+
+            var approvalText = document.getElementById('doctorApprovalText');
+            approvalText.textContent = lines.join('\n');
+            approvalText.style.display = 'block';
+
+            // Copy to clipboard
+            navigator.clipboard.writeText(lines.join('\n')).catch(function() {});
+        };
+
+        // Toggle widget panel
+        document.getElementById('doctorToggle').addEventListener('click', function() {
+            document.getElementById('doctorPanel').classList.toggle('open');
+        });
+
+        // Init
+        applyVariant(state.activeVariant);
+        updateUI();
+        save();
+    })();
+</script>
+
+</body>
+</html>
