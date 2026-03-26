@@ -2,7 +2,6 @@
 
 import { useSession } from "next-auth/react";
 import { useEffect, useState } from "react";
-import { supabase } from "@/lib/supabase";
 import Link from "next/link";
 
 interface Stats {
@@ -29,6 +28,7 @@ export default function DashboardPage() {
   });
   const [activity, setActivity] = useState<ActivityItem[]>([]);
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
 
   const firstName = session?.user?.name?.split(" ")[0] || "Majo";
 
@@ -38,73 +38,50 @@ export default function DashboardPage() {
 
   async function fetchDashboard() {
     setLoading(true);
+    setError(null);
 
-    const now = new Date();
-    const firstOfMonth = new Date(now.getFullYear(), now.getMonth(), 1).toISOString().split("T")[0];
+    try {
+      const res = await fetch("/api/admin/dashboard");
+      if (!res.ok) throw new Error("Error al cargar el dashboard");
+      const data = await res.json();
 
-    const [alumnasRes, inscMesRes, pagosPendRes, clasesRes, pagosRecientes, inscRecientes] =
-      await Promise.all([
-        supabase.from("alumnas").select("id", { count: "exact" }).eq("activa", true),
-        supabase
-          .from("inscripciones")
-          .select("id", { count: "exact" })
-          .gte("fecha_inscripcion", firstOfMonth),
-        supabase.from("pagos").select("id", { count: "exact" }).eq("estado", "pendiente"),
-        supabase
-          .from("inscripciones")
-          .select("clase", { count: "exact" })
-          .eq("estado", "activa"),
-        supabase
-          .from("pagos")
-          .select("id, monto, fecha_pago, estado, alumna:alumnas(nombre, apellido)")
-          .order("created_at", { ascending: false })
-          .limit(5),
-        supabase
-          .from("inscripciones")
-          .select("id, clase, fecha_inscripcion, alumna:alumnas(nombre, apellido)")
-          .order("created_at", { ascending: false })
-          .limit(5),
-      ]);
+      setStats(data.stats);
 
-    setStats({
-      inscripcionesNuevas: inscMesRes.count ?? 0,
-      alumnasActivas: alumnasRes.count ?? 0,
-      pagosPendientes: pagosPendRes.count ?? 0,
-      clasesEsteMes: clasesRes.count ?? 0,
-    });
+      const items: ActivityItem[] = [];
 
-    // Merge and sort recent activity
-    const items: ActivityItem[] = [];
-
-    if (pagosRecientes.data) {
-      for (const p of pagosRecientes.data) {
-        const alumna = p.alumna as { nombre: string; apellido: string } | null;
-        const nombre = alumna ? `${alumna.nombre} ${alumna.apellido}` : "Alumna";
-        items.push({
-          id: `pago-${p.id}`,
-          type: "pago",
-          description: `Pago de ${nombre} — ${Number(p.monto).toFixed(2)} € (${p.estado})`,
-          date: p.fecha_pago,
-        });
+      if (data.pagosRecientes) {
+        for (const p of data.pagosRecientes) {
+          const alumna = p.alumna as { nombre: string; apellido: string } | null;
+          const nombre = alumna ? `${alumna.nombre} ${alumna.apellido}` : "Alumna";
+          items.push({
+            id: `pago-${p.id}`,
+            type: "pago",
+            description: `Pago de ${nombre} — ${Number(p.monto).toFixed(2)} € (${p.estado})`,
+            date: p.fecha_pago,
+          });
+        }
       }
-    }
 
-    if (inscRecientes.data) {
-      for (const i of inscRecientes.data) {
-        const alumna = i.alumna as { nombre: string; apellido: string } | null;
-        const nombre = alumna ? `${alumna.nombre} ${alumna.apellido}` : "Alumna";
-        items.push({
-          id: `insc-${i.id}`,
-          type: "inscripcion",
-          description: `${nombre} inscrita en ${i.clase}`,
-          date: i.fecha_inscripcion,
-        });
+      if (data.inscRecientes) {
+        for (const i of data.inscRecientes) {
+          const alumna = i.alumna as { nombre: string; apellido: string } | null;
+          const nombre = alumna ? `${alumna.nombre} ${alumna.apellido}` : "Alumna";
+          items.push({
+            id: `insc-${i.id}`,
+            type: "inscripcion",
+            description: `${nombre} inscrita en ${i.clase}`,
+            date: i.fecha_inscripcion,
+          });
+        }
       }
-    }
 
-    items.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
-    setActivity(items.slice(0, 5));
-    setLoading(false);
+      items.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
+      setActivity(items.slice(0, 5));
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "Error inesperado");
+    } finally {
+      setLoading(false);
+    }
   }
 
   const statCards = [
@@ -150,6 +127,12 @@ export default function DashboardPage() {
           Bienvenida al panel de administración de tu práctica de Feldenkrais
         </p>
       </div>
+
+      {error && (
+        <div className="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded">
+          {error}
+        </div>
+      )}
 
       {/* Statistics */}
       <div>

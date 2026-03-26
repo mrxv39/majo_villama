@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import Providers from "./providers";
+import { NextAuthSessionProvider } from "@/app/components/SessionProvider";
 
 export const metadata: Metadata = {
   title: "Panel de Administración - Majo Villafaina",
@@ -15,7 +15,7 @@ export default function RootLayout({
   return (
     <html lang="es">
       <body>
-        <Providers>{children}</Providers>
+        <NextAuthSessionProvider>{children}</NextAuthSessionProvider>
       </body>
     </html>
   );

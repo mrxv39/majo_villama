@@ -1,10 +1,10 @@
 import NextAuth from "next-auth";
 import Google from "@auth/core/providers/google";
 
-const ALLOWED_EMAILS = [
-  "majovillama@gmail.com",
-  "xavieeee@gmail.com",
-];
+const ALLOWED_EMAILS = (process.env.ALLOWED_ADMIN_EMAILS || "")
+  .split(",")
+  .map((e) => e.trim())
+  .filter(Boolean);
 
 export const { handlers, auth, signIn, signOut } = NextAuth({
   providers: [
