@@ -1,7 +1,10 @@
 import NextAuth from "next-auth";
 import Google from "@auth/core/providers/google";
 
-const ALLOWED_EMAIL = "majovillama@gmail.com";
+const ALLOWED_EMAILS = [
+  "majovillama@gmail.com",
+  "xavieeee@gmail.com",
+];
 
 export const { handlers, auth, signIn, signOut } = NextAuth({
   providers: [
@@ -12,10 +15,7 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
   ],
   callbacks: {
     async signIn({ user }) {
-      if (user.email === ALLOWED_EMAIL) {
-        return true;
-      }
-      return false;
+      return ALLOWED_EMAILS.includes(user.email ?? "");
     },
     async session({ session }) {
       return session;
