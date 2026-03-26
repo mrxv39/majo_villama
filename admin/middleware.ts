@@ -1,7 +1,7 @@
 import { auth } from "@/lib/auth";
-import { NextRequest, NextResponse } from "next/server";
+import { NextResponse } from "next/server";
 
-export default auth((req: NextRequest) => {
+export default auth((req) => {
   if (!req.auth && req.nextUrl.pathname.startsWith("/admin")) {
     const loginUrl = new URL("/login", req.nextUrl.origin);
     loginUrl.searchParams.append("callbackUrl", req.nextUrl.pathname);

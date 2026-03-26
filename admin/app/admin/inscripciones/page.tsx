@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { supabase } from "@/lib/supabase";
 import { Inscripcion, Alumna } from "@/lib/types";
 
 const clases = [
@@ -18,7 +17,7 @@ const emptyInscripcion = {
   clase: clases[0],
   dia_semana: diasSemana[0],
   horario: "10:00",
-  estado: "activa" as const,
+  estado: "activa" as Inscripcion["estado"],
 };
 
 export default function InscripcionesPage() {
@@ -31,6 +30,7 @@ export default function InscripcionesPage() {
   const [filterEstado, setFilterEstado] = useState("todos");
   const [filterAlumna, setFilterAlumna] = useState("todas");
   const [saving, setSaving] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     fetchData();
@@ -38,16 +38,18 @@ export default function InscripcionesPage() {
 
   async function fetchData() {
     setLoading(true);
-    const [inscRes, alumnasRes] = await Promise.all([
-      supabase
-        .from("inscripciones")
-        .select("*, alumna:alumnas(id, nombre, apellido)")
-        .order("created_at", { ascending: false }),
-      supabase.from("alumnas").select("*").order("nombre"),
-    ]);
-    if (inscRes.data) setInscripciones(inscRes.data);
-    if (alumnasRes.data) setAlumnas(alumnasRes.data);
-    setLoading(false);
+    setError(null);
+    try {
+      const res = await fetch("/api/admin/inscripciones");
+      if (!res.ok) throw new Error("Error al cargar inscripciones");
+      const data = await res.json();
+      setInscripciones(data.inscripciones);
+      setAlumnas(data.alumnas);
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "Error inesperado");
+    } finally {
+      setLoading(false);
+    }
   }
 
   function openNew() {
@@ -70,6 +72,7 @@ export default function InscripcionesPage() {
 
   async function handleSave() {
     setSaving(true);
+    setError(null);
     const payload = {
       alumna_id: form.alumna_id,
       clase: form.clase,
@@ -78,21 +81,37 @@ export default function InscripcionesPage() {
       estado: form.estado,
     };
 
-    if (editing) {
-      await supabase.from("inscripciones").update(payload).eq("id", editing.id);
-    } else {
-      await supabase.from("inscripciones").insert(payload);
+    try {
+      const url = editing ? `/api/admin/inscripciones/${editing.id}` : "/api/admin/inscripciones";
+      const method = editing ? "PUT" : "POST";
+      const res = await fetch(url, {
+        method,
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+      });
+      if (!res.ok) {
+        const data = await res.json();
+        throw new Error(data.error || "Error al guardar");
+      }
+      setShowModal(false);
+      fetchData();
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "Error inesperado");
+    } finally {
+      setSaving(false);
     }
-
-    setSaving(false);
-    setShowModal(false);
-    fetchData();
   }
 
   async function handleDelete(id: string) {
     if (!confirm("¿Segura que quieres eliminar esta inscripción?")) return;
-    await supabase.from("inscripciones").delete().eq("id", id);
-    fetchData();
+    setError(null);
+    try {
+      const res = await fetch(`/api/admin/inscripciones/${id}`, { method: "DELETE" });
+      if (!res.ok) throw new Error("Error al eliminar");
+      fetchData();
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "Error inesperado");
+    }
   }
 
   const filtered = inscripciones.filter((i) => {
@@ -122,6 +141,12 @@ export default function InscripcionesPage() {
           + Nueva Inscripción
         </button>
       </div>
+
+      {error && (
+        <div className="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded">
+          {error}
+        </div>
+      )}
 
       {/* Filters */}
       <div className="flex flex-col sm:flex-row gap-3">

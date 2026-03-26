@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { supabase } from "@/lib/supabase";
 import { Alumna } from "@/lib/types";
 
 const emptyAlumna = {
@@ -23,6 +22,7 @@ export default function AlumnasPage() {
   const [search, setSearch] = useState("");
   const [filterActiva, setFilterActiva] = useState<string>("todas");
   const [saving, setSaving] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     fetchAlumnas();
@@ -30,12 +30,17 @@ export default function AlumnasPage() {
 
   async function fetchAlumnas() {
     setLoading(true);
-    const { data, error } = await supabase
-      .from("alumnas")
-      .select("*")
-      .order("created_at", { ascending: false });
-    if (!error && data) setAlumnas(data);
-    setLoading(false);
+    setError(null);
+    try {
+      const res = await fetch("/api/admin/alumnas");
+      if (!res.ok) throw new Error("Error al cargar alumnas");
+      const data = await res.json();
+      setAlumnas(data);
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "Error inesperado");
+    } finally {
+      setLoading(false);
+    }
   }
 
   function openNew() {
@@ -60,6 +65,7 @@ export default function AlumnasPage() {
 
   async function handleSave() {
     setSaving(true);
+    setError(null);
     const payload = {
       nombre: form.nombre.trim(),
       apellido: form.apellido.trim(),
@@ -70,21 +76,37 @@ export default function AlumnasPage() {
       activa: form.activa,
     };
 
-    if (editing) {
-      await supabase.from("alumnas").update(payload).eq("id", editing.id);
-    } else {
-      await supabase.from("alumnas").insert(payload);
+    try {
+      const url = editing ? `/api/admin/alumnas/${editing.id}` : "/api/admin/alumnas";
+      const method = editing ? "PUT" : "POST";
+      const res = await fetch(url, {
+        method,
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+      });
+      if (!res.ok) {
+        const data = await res.json();
+        throw new Error(data.error || "Error al guardar");
+      }
+      setShowModal(false);
+      fetchAlumnas();
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "Error inesperado");
+    } finally {
+      setSaving(false);
     }
-
-    setSaving(false);
-    setShowModal(false);
-    fetchAlumnas();
   }
 
   async function handleDelete(id: string) {
     if (!confirm("¿Segura que quieres eliminar esta alumna? Se borrarán también sus pagos e inscripciones.")) return;
-    await supabase.from("alumnas").delete().eq("id", id);
-    fetchAlumnas();
+    setError(null);
+    try {
+      const res = await fetch(`/api/admin/alumnas/${id}`, { method: "DELETE" });
+      if (!res.ok) throw new Error("Error al eliminar");
+      fetchAlumnas();
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "Error inesperado");
+    }
   }
 
   const filtered = alumnas.filter((a) => {
@@ -112,6 +134,12 @@ export default function AlumnasPage() {
           + Nueva Alumna
         </button>
       </div>
+
+      {error && (
+        <div className="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded">
+          {error}
+        </div>
+      )}
 
       {/* Filters */}
       <div className="flex flex-col sm:flex-row gap-3">

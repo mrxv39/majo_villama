@@ -41,10 +41,14 @@ CREATE TABLE IF NOT EXISTS inscripciones (
   created_at TIMESTAMPTZ DEFAULT NOW()
 );
 
--- Deshabilitar RLS para simplificar (la app ya tiene auth con NextAuth)
-ALTER TABLE alumnas DISABLE ROW LEVEL SECURITY;
-ALTER TABLE pagos DISABLE ROW LEVEL SECURITY;
-ALTER TABLE inscripciones DISABLE ROW LEVEL SECURITY;
+-- Habilitar RLS en todas las tablas
+ALTER TABLE alumnas ENABLE ROW LEVEL SECURITY;
+ALTER TABLE pagos ENABLE ROW LEVEL SECURITY;
+ALTER TABLE inscripciones ENABLE ROW LEVEL SECURITY;
+
+-- service_role bypasses RLS automáticamente en Supabase.
+-- No se crean políticas para anon — todo el acceso CRUD va
+-- a través de API routes server-side con service_role key.
 
 -- Datos de ejemplo
 INSERT INTO alumnas (nombre, apellido, email, telefono, notas, activa) VALUES

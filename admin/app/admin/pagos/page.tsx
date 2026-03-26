@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { supabase } from "@/lib/supabase";
 import { Pago, Alumna } from "@/lib/types";
 
 const emptyPago = {
@@ -10,7 +9,7 @@ const emptyPago = {
   fecha_pago: new Date().toISOString().split("T")[0],
   metodo_pago: "efectivo",
   concepto: "",
-  estado: "pagado" as const,
+  estado: "pagado" as Pago["estado"],
 };
 
 export default function PagosPage() {
@@ -23,6 +22,7 @@ export default function PagosPage() {
   const [filterEstado, setFilterEstado] = useState("todos");
   const [filterAlumna, setFilterAlumna] = useState("todas");
   const [saving, setSaving] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     fetchData();
@@ -30,16 +30,21 @@ export default function PagosPage() {
 
   async function fetchData() {
     setLoading(true);
-    const [pagosRes, alumnasRes] = await Promise.all([
-      supabase
-        .from("pagos")
-        .select("*, alumna:alumnas(id, nombre, apellido)")
-        .order("fecha_pago", { ascending: false }),
-      supabase.from("alumnas").select("*").order("nombre"),
-    ]);
-    if (pagosRes.data) setPagos(pagosRes.data);
-    if (alumnasRes.data) setAlumnas(alumnasRes.data);
-    setLoading(false);
+    setError(null);
+    try {
+      const [pagosRes, alumnasRes] = await Promise.all([
+        fetch("/api/admin/pagos"),
+        fetch("/api/admin/alumnas"),
+      ]);
+      if (!pagosRes.ok) throw new Error("Error al cargar pagos");
+      if (!alumnasRes.ok) throw new Error("Error al cargar alumnas");
+      setPagos(await pagosRes.json());
+      setAlumnas(await alumnasRes.json());
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "Error inesperado");
+    } finally {
+      setLoading(false);
+    }
   }
 
   function openNew() {
@@ -63,6 +68,7 @@ export default function PagosPage() {
 
   async function handleSave() {
     setSaving(true);
+    setError(null);
     const payload = {
       alumna_id: form.alumna_id,
       monto: parseFloat(form.monto),
@@ -72,21 +78,37 @@ export default function PagosPage() {
       estado: form.estado,
     };
 
-    if (editing) {
-      await supabase.from("pagos").update(payload).eq("id", editing.id);
-    } else {
-      await supabase.from("pagos").insert(payload);
+    try {
+      const url = editing ? `/api/admin/pagos/${editing.id}` : "/api/admin/pagos";
+      const method = editing ? "PUT" : "POST";
+      const res = await fetch(url, {
+        method,
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+      });
+      if (!res.ok) {
+        const data = await res.json();
+        throw new Error(data.error || "Error al guardar");
+      }
+      setShowModal(false);
+      fetchData();
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "Error inesperado");
+    } finally {
+      setSaving(false);
     }
-
-    setSaving(false);
-    setShowModal(false);
-    fetchData();
   }
 
   async function handleDelete(id: string) {
     if (!confirm("¿Segura que quieres eliminar este pago?")) return;
-    await supabase.from("pagos").delete().eq("id", id);
-    fetchData();
+    setError(null);
+    try {
+      const res = await fetch(`/api/admin/pagos/${id}`, { method: "DELETE" });
+      if (!res.ok) throw new Error("Error al eliminar");
+      fetchData();
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "Error inesperado");
+    }
   }
 
   const filtered = pagos.filter((p) => {
@@ -116,6 +138,12 @@ export default function PagosPage() {
           + Registrar Pago
         </button>
       </div>
+
+      {error && (
+        <div className="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded">
+          {error}
+        </div>
+      )}
 
       {/* Filters */}
       <div className="flex flex-col sm:flex-row gap-3">
@@ -176,7 +204,7 @@ export default function PagosPage() {
                       <div className="text-xs text-gray-500 mt-0.5">{pago.concepto}</div>
                     )}
                   </td>
-                  <td className="px-4 py-3 font-medium text-gray-800">{pago.monto.toFixed(2)} &euro;</td>
+                  <td className="px-4 py-3 font-medium text-gray-800">{Number(pago.monto).toFixed(2)} &euro;</td>
                   <td className="px-4 py-3 text-gray-600 hidden sm:table-cell">
                     {new Date(pago.fecha_pago).toLocaleDateString("es-ES")}
                   </td>
