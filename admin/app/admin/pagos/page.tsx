@@ -11,6 +11,7 @@ import SearchFilter from "@/app/components/SearchFilter";
 import FormField from "@/app/components/FormField";
 import DataTable, { Column } from "@/app/components/DataTable";
 import { useToast } from "@/app/components/Toast";
+import { downloadCSV } from "@/lib/export";
 
 const emptyPago = {
   alumna_id: "",
@@ -188,12 +189,34 @@ export default function PagosPage() {
           <h1 className="text-3xl font-serif text-accent mb-1">Pagos</h1>
           <p className="text-gray-600">Gestiona los pagos de las alumnas</p>
         </div>
-        <button
-          onClick={openNew}
-          className="px-5 py-2.5 bg-accent text-white rounded hover:bg-accent-dark transition font-medium"
-        >
-          + Registrar Pago
-        </button>
+        <div className="flex gap-2">
+          <button
+            onClick={() => {
+              const date = new Date().toISOString().split("T")[0];
+              downloadCSV(
+                filtered.map((p) => ({
+                  alumna: p.alumna ? `${p.alumna.nombre} ${p.alumna.apellido}` : "",
+                  monto: Number(p.monto).toFixed(2),
+                  fecha: p.fecha_pago,
+                  metodo: p.metodo_pago,
+                  concepto: p.concepto || "",
+                  estado: p.estado,
+                })),
+                `pagos_${date}.csv`,
+                { alumna: "Alumna", monto: "Monto", fecha: "Fecha", metodo: "Método", concepto: "Concepto", estado: "Estado" }
+              );
+            }}
+            className="px-4 py-2.5 border border-bg-warm rounded text-gray-600 hover:bg-bg transition font-medium"
+          >
+            Exportar CSV
+          </button>
+          <button
+            onClick={openNew}
+            className="px-5 py-2.5 bg-accent text-white rounded hover:bg-accent-dark transition font-medium"
+          >
+            + Registrar Pago
+          </button>
+        </div>
       </div>
 
       {error && (

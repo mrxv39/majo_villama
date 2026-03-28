@@ -18,6 +18,23 @@ interface ActivityItem {
   date: string;
 }
 
+interface PagoMensual {
+  mes: string;
+  total: number;
+}
+
+interface ClaseHoy {
+  nombre: string;
+  hora_inicio: string;
+  hora_fin: string;
+  inscritas: number;
+}
+
+interface Deudor {
+  nombre: string;
+  monto: number;
+}
+
 export default function DashboardPage() {
   const { data: session } = useSession();
   const [stats, setStats] = useState<Stats>({
@@ -29,6 +46,10 @@ export default function DashboardPage() {
   const [activity, setActivity] = useState<ActivityItem[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const [pagosMensuales, setPagosMensuales] = useState<PagoMensual[]>([]);
+  const [clasesHoy, setClasesHoy] = useState<ClaseHoy[]>([]);
+  const [deudores, setDeudores] = useState<Deudor[]>([]);
+  const [asistenciaSemana, setAsistenciaSemana] = useState({ total: 0, presentes: 0 });
 
   const firstName = session?.user?.name?.split(" ")[0] || "Majo";
 
@@ -46,6 +67,10 @@ export default function DashboardPage() {
       const data = await res.json();
 
       setStats(data.stats);
+      setPagosMensuales(data.pagosMensuales ?? []);
+      setClasesHoy(data.clasesHoy ?? []);
+      setDeudores(data.deudores ?? []);
+      setAsistenciaSemana(data.asistenciaSemana ?? { total: 0, presentes: 0 });
 
       const items: ActivityItem[] = [];
 
@@ -118,6 +143,8 @@ export default function DashboardPage() {
     { label: "Agregar Contenido", href: "/admin/contenido", icon: "📝" },
   ];
 
+  const maxPago = Math.max(...pagosMensuales.map((p) => p.total), 1);
+
   return (
     <div className="space-y-8">
       {/* Welcome Section */}
@@ -151,6 +178,99 @@ export default function DashboardPage() {
               </div>
             </div>
           ))}
+        </div>
+      </div>
+
+      {/* Charts + Side info row */}
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        {/* Monthly payments chart (CSS bars) */}
+        <div className="bg-white rounded-lg p-6 border border-bg-warm">
+          <h2 className="text-lg font-serif text-accent mb-4">Pagos mensuales</h2>
+          {pagosMensuales.length === 0 ? (
+            <p className="text-gray-500 text-sm">Sin datos de pagos</p>
+          ) : (
+            <div className="flex items-end gap-2 h-40">
+              {pagosMensuales.map((p) => (
+                <div key={p.mes} className="flex-1 flex flex-col items-center gap-1">
+                  <span className="text-xs text-gray-500">{p.total.toFixed(0)}&euro;</span>
+                  <div
+                    className="w-full bg-accent rounded-t"
+                    style={{ height: `${(p.total / maxPago) * 100}%`, minHeight: "4px" }}
+                  />
+                  <span className="text-xs text-gray-500">{p.mes}</span>
+                </div>
+              ))}
+            </div>
+          )}
+        </div>
+
+        {/* Attendance this week */}
+        <div className="bg-white rounded-lg p-6 border border-bg-warm">
+          <h2 className="text-lg font-serif text-accent mb-4">Asistencia esta semana</h2>
+          {asistenciaSemana.total === 0 ? (
+            <p className="text-gray-500 text-sm">Sin registros esta semana</p>
+          ) : (
+            <div className="flex flex-col items-center">
+              <div className="relative w-32 h-32">
+                <svg viewBox="0 0 100 100" className="w-full h-full -rotate-90">
+                  <circle cx="50" cy="50" r="40" fill="none" stroke="#E8DFD3" strokeWidth="12" />
+                  <circle
+                    cx="50" cy="50" r="40" fill="none"
+                    stroke="#7A8B6F"
+                    strokeWidth="12"
+                    strokeDasharray={`${(asistenciaSemana.presentes / asistenciaSemana.total) * 251.2} 251.2`}
+                    strokeLinecap="round"
+                  />
+                </svg>
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <span className="text-2xl font-serif text-accent">
+                    {Math.round((asistenciaSemana.presentes / asistenciaSemana.total) * 100)}%
+                  </span>
+                </div>
+              </div>
+              <p className="text-sm text-gray-500 mt-2">
+                {asistenciaSemana.presentes} de {asistenciaSemana.total} registros
+              </p>
+            </div>
+          )}
+        </div>
+      </div>
+
+      {/* Clases hoy + Deudores */}
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        <div className="bg-white rounded-lg p-6 border border-bg-warm">
+          <h2 className="text-lg font-serif text-accent mb-4">Clases hoy</h2>
+          {clasesHoy.length === 0 ? (
+            <p className="text-gray-500 text-sm">No hay clases programadas hoy</p>
+          ) : (
+            <div className="space-y-3">
+              {clasesHoy.map((c, i) => (
+                <div key={i} className="flex items-center justify-between py-2 border-b border-bg-warm last:border-0">
+                  <div>
+                    <span className="font-medium text-gray-700">{c.nombre}</span>
+                    <span className="text-sm text-gray-500 ml-2">{c.hora_inicio}-{c.hora_fin}</span>
+                  </div>
+                  <span className="text-sm text-gray-600">{c.inscritas} inscritas</span>
+                </div>
+              ))}
+            </div>
+          )}
+        </div>
+
+        <div className="bg-white rounded-lg p-6 border border-bg-warm">
+          <h2 className="text-lg font-serif text-accent mb-4">Alumnas con pagos vencidos</h2>
+          {deudores.length === 0 ? (
+            <p className="text-gray-500 text-sm">Sin pagos vencidos</p>
+          ) : (
+            <div className="space-y-2">
+              {deudores.map((d, i) => (
+                <div key={i} className="flex items-center justify-between py-2 border-b border-bg-warm last:border-0">
+                  <span className="font-medium text-gray-700">{d.nombre}</span>
+                  <span className="font-medium text-orange-600">{d.monto.toFixed(2)} &euro;</span>
+                </div>
+              ))}
+            </div>
+          )}
         </div>
       </div>
 

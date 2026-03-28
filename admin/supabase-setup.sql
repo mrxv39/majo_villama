@@ -50,6 +50,59 @@ ALTER TABLE inscripciones ENABLE ROW LEVEL SECURITY;
 -- No se crean políticas para anon — todo el acceso CRUD va
 -- a través de API routes server-side con service_role key.
 
+-- Tabla de clases
+CREATE TABLE IF NOT EXISTS clases (
+  id UUID DEFAULT gen_random_uuid() PRIMARY KEY,
+  nombre TEXT NOT NULL,
+  descripcion TEXT DEFAULT '',
+  dia_semana TEXT NOT NULL,
+  hora_inicio TIME NOT NULL,
+  hora_fin TIME NOT NULL,
+  capacidad INTEGER DEFAULT 10,
+  activa BOOLEAN DEFAULT true,
+  created_at TIMESTAMPTZ DEFAULT NOW()
+);
+
+ALTER TABLE clases ENABLE ROW LEVEL SECURITY;
+
+-- Tabla de asistencias
+CREATE TABLE IF NOT EXISTS asistencias (
+  id UUID DEFAULT gen_random_uuid() PRIMARY KEY,
+  alumna_id UUID REFERENCES alumnas(id) ON DELETE CASCADE,
+  clase_id UUID REFERENCES clases(id) ON DELETE CASCADE,
+  fecha DATE DEFAULT CURRENT_DATE,
+  asistio BOOLEAN DEFAULT true,
+  notas TEXT DEFAULT '',
+  created_at TIMESTAMPTZ DEFAULT NOW(),
+  UNIQUE(alumna_id, clase_id, fecha)
+);
+
+ALTER TABLE asistencias ENABLE ROW LEVEL SECURITY;
+
+-- Tabla de contenido
+CREATE TABLE IF NOT EXISTS contenido (
+  id UUID DEFAULT gen_random_uuid() PRIMARY KEY,
+  titulo TEXT NOT NULL,
+  tipo TEXT NOT NULL CHECK (tipo IN ('ejercicio', 'video', 'documento', 'enlace')),
+  descripcion TEXT DEFAULT '',
+  url TEXT DEFAULT '',
+  contenido_texto TEXT DEFAULT '',
+  visible BOOLEAN DEFAULT true,
+  orden INTEGER DEFAULT 0,
+  created_at TIMESTAMPTZ DEFAULT NOW()
+);
+
+ALTER TABLE contenido ENABLE ROW LEVEL SECURITY;
+
+-- Datos de ejemplo para clases
+INSERT INTO clases (nombre, dia_semana, hora_inicio, hora_fin, capacidad) VALUES
+  ('Feldenkrais Grupal', 'Martes', '10:00', '11:00', 12),
+  ('Feldenkrais Grupal', 'Jueves', '10:00', '11:00', 12),
+  ('Sesión Individual', 'Lunes', '16:00', '17:00', 1),
+  ('Sesión Individual', 'Miércoles', '16:00', '17:00', 1),
+  ('Taller Monográfico', 'Sábado', '10:00', '12:00', 15),
+  ('Clase Online', 'Viernes', '18:00', '19:00', 20);
+
 -- Datos de ejemplo
 INSERT INTO alumnas (nombre, apellido, email, telefono, notas, activa) VALUES
   ('Maria', 'Garcia Lopez', 'maria.garcia@email.com', '+34 612 345 678', 'Clase de los martes', true),

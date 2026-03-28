@@ -10,7 +10,10 @@ const navigationItems = [
   { href: "/admin/inscripciones", label: "Inscripciones", icon: "📝" },
   { href: "/admin/alumnas", label: "Alumnas", icon: "👥" },
   { href: "/admin/pagos", label: "Pagos", icon: "💳" },
+  { href: "/admin/clases", label: "Clases", icon: "🗓️" },
+  { href: "/admin/asistencia", label: "Asistencia", icon: "✅" },
   { href: "/admin/contenido", label: "Contenido", icon: "📄" },
+  { href: "/admin/reportes", label: "Reportes", icon: "����" },
 ];
 
 export default function AdminLayout({
