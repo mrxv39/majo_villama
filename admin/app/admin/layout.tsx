@@ -4,6 +4,7 @@ import { useSession, signOut } from "next-auth/react";
 import Link from "next/link";
 import { useState } from "react";
 import { usePathname } from "next/navigation";
+import Breadcrumbs from "@/app/components/Breadcrumbs";
 
 const navigationItems = [
   { href: "/admin", label: "Panel", icon: "📊" },
@@ -117,7 +118,10 @@ export default function AdminLayout({
         </header>
 
         {/* Content Area */}
-        <main className="flex-1 overflow-y-auto p-4 md:p-8">{children}</main>
+        <main className="flex-1 overflow-y-auto p-4 md:p-8">
+          <Breadcrumbs />
+          {children}
+        </main>
       </div>
 
       {/* Mobile Overlay */}
