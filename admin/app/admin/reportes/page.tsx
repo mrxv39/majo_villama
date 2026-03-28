@@ -35,6 +35,7 @@ export default function ReportesPage() {
 
   useEffect(() => {
     fetchReporte();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [mes, anio]);
 
   async function fetchReporte() {

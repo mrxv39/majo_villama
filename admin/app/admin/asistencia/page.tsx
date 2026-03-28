@@ -47,6 +47,7 @@ export default function AsistenciaPage() {
 
   useEffect(() => {
     if (claseId && fecha) loadExisting();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [claseId, fecha]);
 
   async function loadExisting() {
@@ -109,6 +110,7 @@ export default function AsistenciaPage() {
 
   useEffect(() => {
     if (tab === "historial") loadHistorial();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [tab, filterAlumna, filterClase]);
 
   if (loading) return <LoadingSpinner message="Cargando..." />;
