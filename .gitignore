@@ -12,3 +12,4 @@ img/
 # Permitimos la carpeta canónica para web
 !static/img/
 !static/img/.gitkeep
+.vercel
